@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "919908193240",
+    "project_id": "godsseo-app",
+    "storage_bucket": "godsseo-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919908193240:android:7453bb97bab2bbf55658ad",
+        "android_client_info": {
+          "package_name": "com.example.godsseo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ1-qRXld4hksgn30RT3WB-1O9HbfblGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
