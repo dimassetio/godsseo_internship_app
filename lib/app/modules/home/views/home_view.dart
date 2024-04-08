@@ -42,7 +42,7 @@ class HomeView extends GetView<HomeController> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: primaryColor(context),
         onPressed: () {
-          toast("Go to Presensi Page");
+          toast("Ke halaman presensi");
         },
         child: Icon(
           Icons.fingerprint_rounded,
