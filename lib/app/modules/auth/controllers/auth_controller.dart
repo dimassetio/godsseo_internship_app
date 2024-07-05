@@ -114,6 +114,25 @@ class AuthController extends GetxController {
     }
   }
 
+  Future<UserModel?> getActiveUser() async {
+    try {
+      if (_auth.currentUser is User) {
+        if (_auth.currentUser!.emailVerified) {
+          var user = await UserModel(id: _auth.currentUser?.uid).getUser();
+          return user;
+        } else {
+          _auth.signOut();
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } on Exception catch (e) {
+      printError(info: e.toString());
+      return null;
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();

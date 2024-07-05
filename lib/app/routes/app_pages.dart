@@ -14,6 +14,12 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home_admin/bindings/home_admin_binding.dart';
 import '../modules/home_admin/views/home_admin_view.dart';
+import '../modules/presensi/admin/bindings/presensi_admin_binding.dart';
+import '../modules/presensi/admin/views/presensi_admin_view.dart';
+import '../modules/presensi/detail/bindings/presensi_detail_binding.dart';
+import '../modules/presensi/detail/views/presensi_detail_view.dart';
+import '../modules/presensi/index/bindings/presensi_index_binding.dart';
+import '../modules/presensi/index/views/presensi_index_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/users/bindings/users_binding.dart';
@@ -90,5 +96,26 @@ class AppPages {
         ),
       ],
     ),
+    GetPage(
+        name: _Paths.PRESENSI,
+        page: () => const PresensiIndexView(),
+        binding: PresensiIndexBinding(),
+        children: [
+          GetPage(
+            name: _Paths.INDEX,
+            page: () => const PresensiIndexView(),
+            binding: PresensiIndexBinding(),
+          ),
+          GetPage(
+            name: _Paths.DETAIL,
+            page: () => const PresensiDetailView(),
+            binding: PresensiDetailBinding(),
+          ),
+          GetPage(
+            name: _Paths.ADMIN,
+            page: () => const PresensiAdminView(),
+            binding: PresensiAdminBinding(),
+          ),
+        ]),
   ];
 }

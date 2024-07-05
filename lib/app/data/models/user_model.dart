@@ -5,6 +5,8 @@ import 'package:godsseo/app/data/helpers/database.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class UserModel extends Database {
+  static const String COLLECTION_NAME = "users";
+
   static const String ID = "ID";
   static const String UID = "UID";
   static const String ROLE = "ROLE";
@@ -51,16 +53,19 @@ class UserModel extends Database {
     this.foto,
     this.isActive,
   }) : super(
-          collectionReference: firestore.collection(userCollection),
-          storageReference: storage.ref(userCollection),
+          collectionReference: firestore.collection(COLLECTION_NAME),
+          storageReference: storage.ref(COLLECTION_NAME),
         );
+
+  static CollectionReference get getCollectionReference =>
+      firestore.collection(COLLECTION_NAME);
 
   // UserModel.fromSnapshot(String? id, Map<String, dynamic> json)
   UserModel.fromSnapshot(DocumentSnapshot doc)
       : id = doc.id,
         super(
-            collectionReference: firestore.collection(userCollection),
-            storageReference: storage.ref(userCollection)) {
+            collectionReference: firestore.collection(COLLECTION_NAME),
+            storageReference: storage.ref(COLLECTION_NAME)) {
     var json = doc.data() as Map<String, dynamic>?;
     role = json?[ROLE];
     email = json?[EMAIL];
@@ -96,11 +101,9 @@ class UserModel extends Database {
         ? null
         : await super
             .collectionReference
-            .where(UID, isEqualTo: uid!)
+            .doc(uid)
             .get()
-            .then((value) => value.docs.isNotEmpty
-                ? UserModel.fromSnapshot(value.docs.first)
-                : null);
+            .then((value) => UserModel.fromSnapshot(value));
   }
 
   bool hasRole(String value) => role == value;
@@ -137,11 +140,9 @@ class UserModel extends Database {
   Stream<UserModel> streamByUid(pUid) {
     return super
         .collectionReference
-        .where(UID, isEqualTo: pUid)
+        .doc(pUid)
         .snapshots()
-        .map((event) => event.docs.isEmpty
-            ? UserModel()
-            : UserModel.fromSnapshot(event.docs.first));
+        .map((event) => UserModel.fromSnapshot(event));
   }
 }
 

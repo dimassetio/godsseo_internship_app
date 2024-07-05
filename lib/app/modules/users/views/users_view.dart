@@ -113,7 +113,9 @@ class UsersCard extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           child: Text(
             user.role ?? "--",
-            style: textTheme(context).labelMedium?.copyWith(color: clr_white),
+            style: textTheme(context)
+                .labelMedium
+                ?.copyWith(color: colorScheme(context).onPrimary),
           ),
         ),
       ),

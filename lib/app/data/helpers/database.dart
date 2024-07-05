@@ -9,8 +9,6 @@ import 'package:nb_utils/nb_utils.dart';
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 FirebaseStorage storage = FirebaseStorage.instance;
 
-const userCollection = "users";
-
 class Database {
   CollectionReference collectionReference;
   Reference? storageReference;
@@ -93,7 +91,7 @@ class Database {
     }
   }
 
-  Query<Map<String, dynamic>> collectionGroup(String collectionPath) {
+  static Query<Map<String, dynamic>> collectionGroup(String collectionPath) {
     return firestore.collectionGroup(collectionPath);
   }
 }

@@ -64,7 +64,7 @@ class GSDialog extends StatelessWidget {
                     child: Text(negativeText ?? "No"),
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(horizontal: 16),
-                        backgroundColor: clr_white,
+                        backgroundColor: colorScheme(context).surface,
                         foregroundColor: primaryColor(context),
                         shape: RoundedRectangleBorder(
                             side: BorderSide(color: primaryColor(context)),

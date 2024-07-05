@@ -15,6 +15,9 @@ abstract class Routes {
   static const USERS = _Paths.USERS;
   static const USERS_FORM = _Paths.USERS + _Paths.FORM;
   static const USERS_DETAIL = _Paths.USERS + _Paths.DETAIL;
+  static const PRESENSI_DETAIL = _Paths.PRESENSI + _Paths.DETAIL;
+  static const PRESENSI_INDEX = _Paths.PRESENSI + _Paths.INDEX;
+  static const PRESENSI_ADMIN = _Paths.PRESENSI + _Paths.ADMIN;
 }
 
 abstract class _Paths {
@@ -30,4 +33,7 @@ abstract class _Paths {
   static const USERS = '/users';
   static const FORM = '/form';
   static const DETAIL = '/detail';
+  static const PRESENSI = '/presensi';
+  static const INDEX = '/index';
+  static const ADMIN = '/admin';
 }

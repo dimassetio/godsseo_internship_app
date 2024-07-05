@@ -15,14 +15,15 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   var authController = Get.put(AuthController(), permanent: true);
+  await authController.getActiveUser();
   runApp(
     GetMaterialApp(
       title: "Godsseo-App",
       debugShowCheckedModeBanner: false,
       initialRoute: authController.isLoggedIn
-          ? authC.user.hasRole(Role.magang)
-              ? Routes.HOME
-              : Routes.HOME_ADMIN
+          ? authC.user.hasRole(Role.administrator)
+              ? Routes.HOME_ADMIN
+              : Routes.HOME
           : Routes.AUTH_SIGN_IN,
       getPages: AppPages.routes,
       theme: mainTheme,

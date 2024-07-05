@@ -12,6 +12,7 @@ class GSCardColumn extends StatelessWidget {
       this.elevation,
       this.color,
       this.crossAxis,
+      this.onTap,
       this.mainAxis});
   final List<Widget> children;
   final double padding;
@@ -23,23 +24,29 @@ class GSCardColumn extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final MainAxisAlignment? mainAxis;
   final CrossAxisAlignment? crossAxis;
+  final void Function()? onTap;
+
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: margin ?? EdgeInsets.zero,
-      color: color ?? clr_white,
+      color: color ?? colorScheme(context).surface,
       elevation: elevation ?? 2,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radius ?? 16)),
-      child: Container(
-        height: height,
-        alignment: Alignment.centerLeft,
-        width: width,
-        padding: EdgeInsets.all(padding),
-        child: Column(
-          crossAxisAlignment: crossAxis ?? CrossAxisAlignment.start,
-          mainAxisAlignment: mainAxis ?? MainAxisAlignment.start,
-          children: children,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(radius ?? 16),
+        child: Container(
+          height: height,
+          alignment: Alignment.centerLeft,
+          width: width,
+          padding: EdgeInsets.all(padding),
+          child: Column(
+            crossAxisAlignment: crossAxis ?? CrossAxisAlignment.start,
+            mainAxisAlignment: mainAxis ?? MainAxisAlignment.start,
+            children: children,
+          ),
         ),
       ),
     );
