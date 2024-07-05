@@ -21,23 +21,22 @@ class UsersDetailController extends GetxController {
       await showDialog(
         context: context,
         builder: (context) => GSDialog(
-          title: "Kirim Email Reset Password?",
-          subtitle:
-              "Email berisi link untuk mereset passwrod akan dikirim ke ${user?.email}, lanjutkan?",
+          title: "Kirim Email Reset Password?".tr,
+          subtitle: "Kirim ke".trParams({"email": user?.email ?? ''}),
           confirmText: "Ya",
           onConfirm: () async {
             if (user?.email is String) {
               await authC.resetPassword(user!.email!);
             } else {
-              Get.snackbar("Error", "user not detected");
+              Get.snackbar("Error".tr, "User tidak ditemukan".tr);
             }
             Get.back(closeOverlays: true);
           },
-          negativeText: "Batal",
+          negativeText: "Batal".tr,
         ),
       );
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      Get.snackbar("Error".tr, e.toString());
     } finally {
       isLoading = false;
     }
@@ -49,9 +48,10 @@ class UsersDetailController extends GetxController {
       await showDialog(
         context: context,
         builder: (context) => GSDialog(
-          title: "Nonaktifkan User?",
-          subtitle: "User: ${user?.nickname} akan dinonaktifkan, lanjutkan?",
-          confirmText: "Ya",
+          title: "Nonaktifkan User?".tr,
+          subtitle:
+              "User dinonaktifkan".trParams({'name': user?.nickname ?? ''}),
+          confirmText: "Ya".tr,
           onConfirm: () async {
             // Nonaktifkan user
             user?.isActive = false;
@@ -62,11 +62,11 @@ class UsersDetailController extends GetxController {
             Get.back(closeOverlays: true);
             Get.back();
           },
-          negativeText: "Batal",
+          negativeText: "Batal".tr,
         ),
       );
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      Get.snackbar("Error".tr, e.toString().tr);
     } finally {
       isLoading = false;
     }

@@ -47,7 +47,7 @@ class AuthSignInView extends GetResponsiveView<AuthSignInController> {
                       child: Column(
                         children: [
                           Text(
-                            "Login",
+                            "Sign In".tr,
                             style: textTheme(context)
                                 .headlineMedium
                                 ?.copyWith(color: primaryColor(context)),
@@ -57,12 +57,12 @@ class AuthSignInView extends GetResponsiveView<AuthSignInController> {
                             keyboardType: TextInputType.emailAddress,
                             controller: controller.emailC,
                             decoration: InputDecoration(
-                                labelText: "Email",
+                                labelText: "Email".tr,
                                 icon: Icon(Icons.email_rounded)),
                             validator: (value) =>
                                 (value?.validateEmail() ?? false)
                                     ? null
-                                    : "Email is not valid",
+                                    : "Email tidak valid".tr,
                           ),
                           16.height,
                           Obx(
@@ -70,10 +70,10 @@ class AuthSignInView extends GetResponsiveView<AuthSignInController> {
                               controller: controller.passwordC,
                               obscureText: !controller.showPassword,
                               validator: (value) => value.isEmptyOrNull
-                                  ? 'This field is required!'
+                                  ? 'Bagian ini wajib diisi'.tr
                                   : null,
                               decoration: InputDecoration(
-                                  labelText: "Password",
+                                  labelText: "Password".tr,
                                   icon: Icon(Icons.lock),
                                   suffixIcon: IconButton(
                                       onPressed: () {
@@ -87,7 +87,7 @@ class AuthSignInView extends GetResponsiveView<AuthSignInController> {
                           Container(
                             alignment: Alignment.centerRight,
                             child: TextButton(
-                              child: Text("Forgot Password?"),
+                              child: Text("Lupa Password?".tr),
                               onPressed: () {
                                 Get.toNamed(Routes.AUTH_FORGET_PASSWORD);
                               },
@@ -116,7 +116,7 @@ class AuthSignInView extends GetResponsiveView<AuthSignInController> {
                                         width: 20,
                                         child: CircularProgressIndicator())
                                     : Text(
-                                        "Sign In",
+                                        "Sign In".tr,
                                       ),
                               ),
                             ),
@@ -127,7 +127,7 @@ class AuthSignInView extends GetResponsiveView<AuthSignInController> {
                               Get.offNamed(Routes.AUTH_SIGN_UP);
                             },
                             child: Text(
-                              "Didn't have an account? \nRegister Here!",
+                              "Didn't have an account?".tr,
                               textAlign: TextAlign.center,
                             ),
                           ),

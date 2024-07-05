@@ -27,13 +27,14 @@ class HomeView extends GetView<HomeController> {
                 Obx(
                   () => ListTile(
                     title: Text(
-                      "Hello, ${authC.user.nickname}",
+                      "Halo,".trParams({'name': authC.user.nickname ?? ""}),
                       style: textTheme(context)
                           .titleLarge
                           ?.copyWith(color: primaryColor(context)),
                     ),
                     subtitle: Text(
-                      "This is your day ${authC.user.countInternDays()} internship here",
+                      "Lama magang".trParams(
+                          {"name": authC.user.countInternDays().toString()}),
                       style: textTheme(context).labelLarge,
                     ),
                     trailing: CircleAvatar(child: Icon(Icons.person)),
@@ -56,7 +57,8 @@ class HomeView extends GetView<HomeController> {
                             ),
                             4.width,
                             Text(
-                              'Today, ${dateFormatter(DateTime.now())}',
+                              "Hari ini".trParams(
+                                  {"date": dateFormatter(DateTime.now())}),
                               style: textTheme(context).bodyMedium?.copyWith(
                                   color: colorScheme(context).onPrimary),
                             )
@@ -96,7 +98,7 @@ class HomeView extends GetView<HomeController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Masuk',
+                                "Masuk".tr,
                                 style: textTheme(context).labelMedium?.copyWith(
                                     color: colorScheme(context).onPrimary),
                               ),
@@ -128,7 +130,7 @@ class HomeView extends GetView<HomeController> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
-                                'Keluar',
+                                "Keluar".tr,
                                 style: textTheme(context).labelMedium?.copyWith(
                                     color: colorScheme(context).onPrimary),
                               ),
@@ -184,7 +186,7 @@ class HomeView extends GetView<HomeController> {
                         child: Obx(
                       () => GSCardColumn(
                         children: [
-                          Text("Jarak Dari Kantor"),
+                          Text("Jarak Dari Kantor".tr),
                           4.height,
                           Text(
                             "${decimalFormatter(controller.distance?.toInt(), defaultText: '?')} M",
@@ -220,7 +222,7 @@ class HomeView extends GetView<HomeController> {
                 // History Section
                 Row(
                   children: [
-                    Text('Riwayat Absen'),
+                    Text("Riwayat Presensi".tr),
                     8.width,
                     Expanded(child: Divider(height: 48, thickness: 0.5)),
                     TextButton(
@@ -228,7 +230,7 @@ class HomeView extends GetView<HomeController> {
                         Get.toNamed(Routes.PRESENSI_INDEX);
                       },
                       child: Text(
-                        'Lihat semua',
+                        "Lihat semua".tr,
                         style: textTheme(context).labelMedium,
                       ),
                     ),

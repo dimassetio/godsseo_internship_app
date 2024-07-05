@@ -28,22 +28,24 @@ class AuthSignInController extends GetxController {
       String? message = await authC.signIn(emailC.text, passwordC.text);
       if (message == null) {
         if (authC.user.hasRole(Role.magang)) {
-          Get.snackbar("Login Berhasil", "Selamat datang di Godsseo-App");
+          Get.snackbar("Login Berhasil".tr, "Selamat datang di Godsseo-App".tr);
           Get.toNamed(Routes.HOME);
         } else if (authC.user.hasRoles(
           [Role.administrator, Role.hrd, Role.mentor],
         )) {
-          Get.snackbar("Login Berhasil", "Selamat datang di Godsseo-App");
+          Get.snackbar("Login Berhasil".tr, "Selamat datang di Godsseo-App".tr);
           Get.toNamed(Routes.HOME_ADMIN);
         } else {
-          Get.snackbar("Login Failed",
-              "Unidentified Roles. your roles is ${authC.user.role}");
+          Get.snackbar(
+              "Login Gagal".tr,
+              "Role tidak terdeteksi"
+                  .trParams({'role': authC.user.role ?? ''}));
         }
       } else {
-        Get.snackbar("Error", message);
+        Get.snackbar("Error".tr, message.tr);
       }
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      Get.snackbar("Error".tr, e.toString().tr);
       printError(info: e.toString());
     } finally {
       isLoading = false;

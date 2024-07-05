@@ -33,10 +33,10 @@ class AuthSignUpController extends GetxController {
         Get.toNamed(Routes.AUTH_EMAIL_CONFIRMATION,
             arguments: [emailC.text, passwordC.text]);
       } else {
-        Get.snackbar("Error", message!);
+        Get.snackbar("Error".tr, message!.tr);
       }
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      Get.snackbar("Error".tr, e.toString().tr);
     } finally {
       isLoading = false;
     }

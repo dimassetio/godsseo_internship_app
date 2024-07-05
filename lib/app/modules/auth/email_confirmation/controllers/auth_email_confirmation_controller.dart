@@ -29,13 +29,13 @@ class AuthEmailConfirmationController extends GetxController {
       isLoading = true;
       String? message = await authC.signIn(email, password);
       if (message == null) {
-        Get.snackbar("Login Berhasil", "Selamat datang di Godsseo-App");
+        Get.snackbar("Login Berhasil".tr, "Selamat datang di Godsseo-App".tr);
         Get.toNamed(Routes.HOME);
       } else {
-        Get.snackbar("Error", message);
+        Get.snackbar("Error".tr, message.tr);
       }
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      Get.snackbar("Error".tr, e.toString().tr);
       print(e);
     } finally {
       isLoading = false;

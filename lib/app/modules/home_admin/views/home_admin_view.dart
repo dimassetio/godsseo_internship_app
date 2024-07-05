@@ -27,7 +27,7 @@ class HomeAdminView extends GetView<HomeAdminController> {
                 Obx(
                   () => ListTile(
                     title: Text(
-                      "Hello, ${authC.user.nickname}",
+                      "Halo,".trParams({'name': authC.user.nickname ?? ""}),
                       style: textTheme(context)
                           .titleLarge
                           ?.copyWith(color: primaryColor(context)),
@@ -105,7 +105,7 @@ class HomeAdminView extends GetView<HomeAdminController> {
                               elevation: 0,
                               crossAxis: CrossAxisAlignment.center,
                               children: [
-                                Center(child: Text("Masuk")),
+                                Center(child: Text("Masuk".tr)),
                                 4.height,
                                 Text(
                                   decimalFormatter(controller.countMasuk),
@@ -124,7 +124,7 @@ class HomeAdminView extends GetView<HomeAdminController> {
                               elevation: 0,
                               crossAxis: CrossAxisAlignment.center,
                               children: [
-                                Center(child: Text("Terlambat")),
+                                Center(child: Text("Terlambat".tr)),
                                 4.height,
                                 Text(
                                   decimalFormatter(controller.countTerlambat),
@@ -143,7 +143,7 @@ class HomeAdminView extends GetView<HomeAdminController> {
                               elevation: 0,
                               crossAxis: CrossAxisAlignment.center,
                               children: [
-                                Center(child: Text("Belum")),
+                                Center(child: Text("Belum".tr)),
                                 4.height,
                                 controller.isLoading
                                     ? LinearProgressIndicator()
@@ -168,7 +168,7 @@ class HomeAdminView extends GetView<HomeAdminController> {
                   children: [
                     Icon(Icons.timer, color: primaryColor(context)),
                     4.width,
-                    Text('Riwayat Presensi'),
+                    Text("Riwayat Presensi".tr),
                     8.width,
                     Expanded(child: Divider(height: 48, thickness: 0.5)),
                     TextButton(
@@ -176,7 +176,7 @@ class HomeAdminView extends GetView<HomeAdminController> {
                         Get.toNamed(Routes.PRESENSI_INDEX);
                       },
                       child: Text(
-                        'Lihat semua',
+                        "Lihat semua".tr,
                         style: textTheme(context).labelMedium,
                       ),
                     ),

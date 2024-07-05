@@ -20,11 +20,11 @@ class AuthForgetPasswordController extends GetxController {
       if (res.isEmptyOrNull) {
         return true;
       } else {
-        Get.snackbar("Error", "$res");
+        Get.snackbar("Error".tr, "$res".tr);
         return false;
       }
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      Get.snackbar("Error".tr, e.toString().tr);
       return false;
     } finally {
       isLoading = false;

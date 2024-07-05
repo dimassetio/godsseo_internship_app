@@ -57,7 +57,7 @@ class PresenceAdminCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'masuk'.tr,
+                  'Masuk'.tr,
                   style: textTheme(context).labelMedium,
                 ),
                 Text(timeFormatter(
@@ -69,7 +69,7 @@ class PresenceAdminCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'keluar'.tr,
+                  'Keluar'.tr,
                   style: textTheme(context).labelMedium,
                 ),
                 Text(

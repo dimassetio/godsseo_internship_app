@@ -67,7 +67,7 @@ class UsersFormController extends GetxController {
           user.uid = userCredential.user!.uid;
           isSet = true;
           await userCredential.user!.sendEmailVerification();
-          toast("Email verification sent to ${emailC.text}");
+          toast("Email verification sent".trParams({'email': emailC.text}));
         }
       }
       user.nama = fullnameC.text;
@@ -87,7 +87,7 @@ class UsersFormController extends GetxController {
       await user.save(file: fileFoto, isSet: isSet);
     } catch (e) {
       printError(info: e.toString());
-      Get.snackbar("Error", e.toString());
+      Get.snackbar("Error".tr, e.toString());
     } finally {
       isLoading = false;
     }

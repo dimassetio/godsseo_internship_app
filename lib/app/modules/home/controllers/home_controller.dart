@@ -119,11 +119,15 @@ class HomeController extends GetxController {
       await showDialog(
         context: context,
         builder: (context) => GSDialog(
-          title: "Konfirmasi Presensi",
-          subtitle:
-              "Anda akan melakukan $jenisPresensi pada ${dateTimeFormatter(now)} dengan jarak ${distance?.toInt()}M dari kantor. Status anda $status",
+          title: "Konfirmasi Presensi".tr,
+          subtitle: "Pesan Konfirmasi Presensi".trParams({
+            'jenis': jenisPresensi,
+            'waktu': dateTimeFormatter(now),
+            'jarak': distance?.toInt().toString() ?? '',
+            'status': status
+          }),
           negativeText: 'Batal',
-          confirmText: _isLoading.value ? 'Loading..' : 'Ok',
+          confirmText: _isLoading.value ? 'Loading..'.tr : 'Ok'.tr,
           onConfirm: _isLoading.value
               ? null
               : () async {
@@ -138,7 +142,8 @@ class HomeController extends GetxController {
                     );
                     await model.save();
                     Get.back();
-                    Get.snackbar("Success", "Presensi berhasil disimpan");
+                    Get.snackbar(
+                        "Berhasil".tr, "Presensi berhasil disimpan".tr);
                   } finally {
                     _isLoading.value = false;
                   }
@@ -146,7 +151,7 @@ class HomeController extends GetxController {
         ),
       );
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      Get.snackbar("Error".tr, e.toString().tr);
     }
   }
 

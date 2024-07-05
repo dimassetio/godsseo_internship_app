@@ -24,7 +24,7 @@ class AuthForgetPasswordView extends GetView<AuthForgetPasswordController> {
                 onPressed: () {
                   Get.back();
                 },
-                label: Text("Kembali"),
+                label: Text("Kembali".tr),
                 icon: Icon(
                   Icons.chevron_left_rounded,
                   color: primaryColor(context),
@@ -49,14 +49,14 @@ class AuthForgetPasswordView extends GetView<AuthForgetPasswordController> {
                     ),
                     16.height,
                     Text(
-                      "Reset Password",
+                      "Reset Password".tr,
                       style: textTheme(context)
                           .titleLarge
                           ?.copyWith(color: primaryColor(context)),
                     ),
                     16.height,
                     Text(
-                      "Masukkan email anda untuk mereset password",
+                      "Masukkan email anda untuk mereset password".tr,
                       style: textTheme(context).bodyMedium,
                     ),
                     16.height,
@@ -93,7 +93,7 @@ class AuthForgetPasswordView extends GetView<AuthForgetPasswordController> {
                                 width: 20,
                                 child: CircularProgressIndicator())
                             : Text(
-                                "Reset",
+                                "Reset".tr,
                               ),
                       ),
                     ),
@@ -128,7 +128,7 @@ class ResetPasswordDialog extends StatelessWidget {
           children: [
             SvgPicture.asset(svg_verification),
             Text(
-              "Periksa Email Anda",
+              "Periksa Email Anda".tr,
               textAlign: TextAlign.center,
               style: textTheme(context)
                   .titleMedium
@@ -136,7 +136,8 @@ class ResetPasswordDialog extends StatelessWidget {
             ),
             8.height,
             Text(
-              "Kami telah mengirimkan email ke ${controller.emailC.text}. Silahkan periksa email anda dan ikuti langkah-langkahnya untuk mereset password",
+              "Kami telah mengirimkan email ke"
+                  .trParams({'email': controller.emailC.text}),
               textAlign: TextAlign.center,
             ),
             16.height,
@@ -144,7 +145,7 @@ class ResetPasswordDialog extends StatelessWidget {
               onPressed: () {
                 Get.back(closeOverlays: true);
               },
-              child: Text("Kembali"),
+              child: Text("Kembali".tr),
               style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 64),
                   shape: RoundedRectangleBorder(

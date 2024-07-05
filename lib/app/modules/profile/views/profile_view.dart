@@ -1,18 +1,18 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import "package:cached_network_image/cached_network_image.dart";
+import "package:flutter/material.dart";
 
-import 'package:get/get.dart';
-import 'package:godsseo/app/data/helpers/formatter.dart';
-import 'package:godsseo/app/data/helpers/themes.dart';
-import 'package:godsseo/app/data/models/user_model.dart';
-import 'package:godsseo/app/data/widgets/bottom_bar.dart';
-import 'package:godsseo/app/data/widgets/card_column.dart';
-import 'package:godsseo/app/data/widgets/dialog.dart';
-import 'package:godsseo/app/data/widgets/tile.dart';
-import 'package:godsseo/app/modules/auth/controllers/auth_controller.dart';
-import 'package:nb_utils/nb_utils.dart';
+import "package:get/get.dart";
+import "package:godsseo/app/data/helpers/formatter.dart";
+import "package:godsseo/app/data/helpers/themes.dart";
+import "package:godsseo/app/data/models/user_model.dart";
+import "package:godsseo/app/data/widgets/bottom_bar.dart";
+import "package:godsseo/app/data/widgets/card_column.dart";
+import "package:godsseo/app/data/widgets/dialog.dart";
+import "package:godsseo/app/data/widgets/tile.dart";
+import "package:godsseo/app/modules/auth/controllers/auth_controller.dart";
+import "package:nb_utils/nb_utils.dart";
 
-import '../controllers/profile_controller.dart';
+import "../controllers/profile_controller.dart";
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ProfileView'),
+        title: Text("Profil".tr),
         centerTitle: true,
         actions: [
           IconButton(
@@ -28,10 +28,10 @@ class ProfileView extends GetView<ProfileController> {
                 await showDialog(
                   context: context,
                   builder: (context) => GSDialog(
-                      title: 'Konfirmasi Log Out',
+                      title: "Konfirmasi Log Out".tr,
                       subtitle:
-                          'Apakah anda yakin akan keluar dari aplikasi ini',
-                      negativeText: 'Batal',
+                          "Apakah anda yakin akan keluar dari aplikasi ini".tr,
+                      negativeText: "Batal".tr,
                       onConfirm: () {
                         authC.signOut();
                       }),
@@ -64,8 +64,8 @@ class ProfileView extends GetView<ProfileController> {
                       Icons.person,
                       color: primaryColor(context),
                     ),
-                    value: authC.user.nickname ?? '',
-                    label: "Username",
+                    value: authC.user.nickname ?? "",
+                    label: "Username".tr,
                   ),
                   Divider(height: 4),
                   GSTile(
@@ -73,8 +73,8 @@ class ProfileView extends GetView<ProfileController> {
                       Icons.person,
                       color: primaryColor(context),
                     ),
-                    value: authC.user.nama ?? '',
-                    label: "Nama Lengkap",
+                    value: authC.user.nama ?? "",
+                    label: "Nama Lengkap".tr,
                   ),
                   Divider(height: 4),
                   GSTile(
@@ -84,8 +84,8 @@ class ProfileView extends GetView<ProfileController> {
                           : Icons.female,
                       color: primaryColor(context),
                     ),
-                    value: authC.user.gender ?? '',
-                    label: "Gender",
+                    value: authC.user.gender ?? "",
+                    label: "Gender".tr,
                   ),
                   Divider(height: 4),
                   GSTile(
@@ -93,8 +93,8 @@ class ProfileView extends GetView<ProfileController> {
                       Icons.map,
                       color: primaryColor(context),
                     ),
-                    value: authC.user.alamat ?? '',
-                    label: "Alamat",
+                    value: authC.user.alamat ?? "",
+                    label: "Alamat".tr,
                   ),
                   Divider(height: 4),
                 ],
@@ -107,8 +107,8 @@ class ProfileView extends GetView<ProfileController> {
                       Icons.school,
                       color: primaryColor(context),
                     ),
-                    value: authC.user.sekolah ?? '',
-                    label: "Asal Sekolah",
+                    value: authC.user.sekolah ?? "",
+                    label: "Asal Sekolah".tr,
                   ),
                   Divider(height: 4),
                   GSTile(
@@ -117,7 +117,7 @@ class ProfileView extends GetView<ProfileController> {
                       color: primaryColor(context),
                     ),
                     value: dateFormatter(authC.user.tglMasuk),
-                    label: "Tanggal Masuk",
+                    label: "Tanggal Masuk".tr,
                   ),
                   Divider(height: 4),
                 ],
@@ -131,17 +131,18 @@ class ProfileView extends GetView<ProfileController> {
                       Icons.email_rounded,
                       color: primaryColor(context),
                     ),
-                    value: authC.user.email ?? '',
-                    label: "Email",
+                    value: authC.user.email ?? "",
+                    label: "Email".tr,
                   ),
                   Divider(
                     height: 4,
                   ),
                   GSTile(
                     valueStyle: textTheme(context).titleSmall,
-                    value:
-                        (authC.user.isActive ?? false) ? "Active" : "Nonactive",
-                    label: "Status",
+                    value: (authC.user.isActive ?? false)
+                        ? "Aktif".tr
+                        : "Nonaktif".tr,
+                    label: "Status".tr,
                     leading: Icon(
                       Icons.check_circle_outline_rounded,
                       color: primaryColor(context),
@@ -152,12 +153,12 @@ class ProfileView extends GetView<ProfileController> {
                   ),
                   GSTile(
                     valueStyle: textTheme(context).titleSmall,
-                    label: "Role",
+                    label: "Role".tr,
                     leading: Icon(
                       Icons.admin_panel_settings,
                       color: primaryColor(context),
                     ),
-                    value: authC.user.role ?? '',
+                    value: authC.user.role ?? "",
                   ),
                   Divider(height: 4),
                 ],

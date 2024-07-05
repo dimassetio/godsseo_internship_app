@@ -16,7 +16,7 @@ class UsersView extends GetView<UsersController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Pegawai'),
+          title: Text("Pengguna".tr),
           centerTitle: true,
         ),
         floatingActionButton: FloatingActionButton(

@@ -22,7 +22,7 @@ class UsersFormView extends GetView<UsersFormController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${controller.isEdit ? 'Edit' : 'Tambah'} Users'),
+        title: Text('${controller.isEdit ? 'Edit'.tr : 'Tambah'.tr} User'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -61,19 +61,19 @@ class UsersFormView extends GetView<UsersFormController> {
                         controller.selectedPhotoPath.value = result.path;
                       }
                     },
-                    child: Text("Upload foto")),
+                    child: Text("Upload foto".tr)),
                 16.height,
                 GSCardColumn(
                   children: [
                     GSTextField(
                       icon: Icon(Icons.person),
-                      label: "Username",
+                      label: "Username".tr,
                       controller: controller.usernameC,
                     ),
                     16.height,
                     GSTextField(
                       icon: Icon(Icons.person),
-                      label: "Nama Lengkap",
+                      label: "Nama Lengkap".tr,
                       controller: controller.fullnameC,
                     ),
                     16.height,
@@ -83,13 +83,13 @@ class UsersFormView extends GetView<UsersFormController> {
                         controller.selectedGender = value;
                       },
                       initValue: controller.selectedGender,
-                      label: "Gender",
+                      label: "Gender".tr,
                       icon: Icon(Icons.male),
                     ),
                     16.height,
                     GSTextField(
                       icon: Icon(Icons.map),
-                      label: "Alamat",
+                      label: "Alamat".tr,
                       controller: controller.alamatC,
                     ),
                   ],
@@ -99,7 +99,7 @@ class UsersFormView extends GetView<UsersFormController> {
                   children: [
                     GSTextField(
                       icon: Icon(Icons.school),
-                      label: "Asal Sekolah",
+                      label: "Asal Sekolah".tr,
                       controller: controller.sekolahC,
                     ),
                     16.height,
@@ -118,7 +118,7 @@ class UsersFormView extends GetView<UsersFormController> {
                       },
                       controller: controller.tglMasukC,
                       icon: Icon(Icons.date_range),
-                      label: "Tanggal Masuk",
+                      label: "Tanggal Masuk".tr,
                     ),
                   ],
                 ),
@@ -134,15 +134,13 @@ class UsersFormView extends GetView<UsersFormController> {
                     ),
                     16.height,
                     GSDropdown(
-                      listValue: ["Active", "Nonactive"],
+                      listValue: ["Aktif".tr, "Nonaktif".tr],
                       onChanged: (value) {
-                        controller.isActive = value == "Active";
+                        controller.isActive = value == "Aktif".tr;
                       },
-                      initValue: controller.isActive == null
-                          ? null
-                          : (controller.isActive ?? false)
-                              ? "Active"
-                              : "Nonactive",
+                      initValue: (controller.isActive ?? false)
+                          ? "Aktif".tr
+                          : "Nonaktif".tr,
                       label: "Status",
                       icon: Icon(Icons.check_circle_outline_rounded),
                     ),
@@ -153,7 +151,7 @@ class UsersFormView extends GetView<UsersFormController> {
                         controller.selectedRole = value;
                       },
                       initValue: controller.selectedRole,
-                      label: "Role",
+                      label: "Role".tr,
                       icon: Icon(Icons.admin_panel_settings),
                     ),
                   ],
@@ -169,7 +167,7 @@ class UsersFormView extends GetView<UsersFormController> {
                         textFieldType: TextFieldType.PASSWORD,
                         icon: Icon(Icons.lock),
                         controller: controller.passwordC,
-                        label: "Password",
+                        label: "Password".tr,
                       ),
                       16.height,
                       GSTextField(
@@ -178,10 +176,10 @@ class UsersFormView extends GetView<UsersFormController> {
                         controller: controller.confirmPasswordC,
                         validator: (value) => value == controller.passwordC.text
                             ? null
-                            : "Password does not match",
+                            : "Password tidak sama!".tr,
                         textFieldType: TextFieldType.PASSWORD,
                         icon: Icon(Icons.lock),
-                        label: "Confirm Password",
+                        label: "Konfirmasi Password".tr,
                       ),
                     ],
                   ),
@@ -210,7 +208,7 @@ class UsersFormView extends GetView<UsersFormController> {
                               width: 24,
                               child: CircularProgressIndicator(),
                             )
-                          : Text("Submit"),
+                          : Text("Submit".tr),
                     ),
                   ),
                 )

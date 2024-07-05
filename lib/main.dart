@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:godsseo/app/data/helpers/firebase_options.dart';
+import 'package:godsseo/app/data/helpers/languages.dart';
 import 'package:godsseo/app/data/helpers/themes.dart';
 import 'package:godsseo/app/data/models/user_model.dart';
 import 'package:godsseo/app/modules/auth/controllers/auth_controller.dart';
@@ -20,6 +21,8 @@ void main() async {
     GetMaterialApp(
       title: "Godsseo-App",
       debugShowCheckedModeBanner: false,
+      translations: LanguageTranslation(),
+      locale: Get.locale ?? LanguageTranslation.localeEN,
       initialRoute: authController.isLoggedIn
           ? authC.user.hasRole(Role.administrator)
               ? Routes.HOME_ADMIN

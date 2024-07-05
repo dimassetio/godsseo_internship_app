@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import 'package:get/get.dart';
-import 'package:godsseo/app/data/helpers/formatter.dart';
-import 'package:godsseo/app/data/helpers/themes.dart';
-import 'package:godsseo/app/data/widgets/card_column.dart';
-import 'package:godsseo/app/modules/home/views/presence_card.dart';
-import 'package:nb_utils/nb_utils.dart';
+import "package:get/get.dart";
+import "package:godsseo/app/data/helpers/formatter.dart";
+import "package:godsseo/app/data/helpers/themes.dart";
+import "package:godsseo/app/data/widgets/card_column.dart";
+import "package:godsseo/app/modules/home/views/presence_card.dart";
+import "package:nb_utils/nb_utils.dart";
 
-import '../controllers/presensi_index_controller.dart';
+import "../controllers/presensi_index_controller.dart";
 
 class PresensiIndexView extends GetView<PresensiIndexController> {
   const PresensiIndexView({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class PresensiIndexView extends GetView<PresensiIndexController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Riwayat Presensi'),
+          title: const Text("Riwayat Presensi"),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -37,7 +37,7 @@ class PresensiIndexView extends GetView<PresensiIndexController> {
                 //           crossAxisAlignment: CrossAxisAlignment.start,
                 //           children: [
                 //             Text(
-                //               controller.user.nama ?? '-',
+                //               controller.user.nama ?? "-",
                 //               style: textTheme(context).titleMedium?.copyWith(
                 //                   color: colorScheme(context).onPrimary),
                 //             ),
@@ -47,7 +47,7 @@ class PresensiIndexView extends GetView<PresensiIndexController> {
                 //               padding: EdgeInsets.symmetric(
                 //                   horizontal: 12, vertical: 2),
                 //               child: Text(
-                //                 controller.user.sekolah ?? '-',
+                //                 controller.user.sekolah ?? "-",
                 //                 style: textTheme(context).labelLarge?.copyWith(
                 //                     color: colorScheme(context).onSecondary),
                 //               ),
@@ -66,7 +66,7 @@ class PresensiIndexView extends GetView<PresensiIndexController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Rekap Presensi Bulanan',
+                          "Rekap Presensi Bulanan".tr,
                           style: textTheme(context)
                               .bodyMedium
                               ?.copyWith(color: colorScheme(context).onPrimary),
@@ -101,7 +101,7 @@ class PresensiIndexView extends GetView<PresensiIndexController> {
                           children: [
                             Center(
                               child: Text(
-                                'Tepat Waktu',
+                                "Tepat Waktu".tr,
                                 style: textTheme(context)
                                     .titleSmall
                                     ?.copyWith(color: primaryColor(context)),
@@ -127,7 +127,7 @@ class PresensiIndexView extends GetView<PresensiIndexController> {
                           children: [
                             Center(
                               child: Text(
-                                'Terlambat',
+                                "Terlambat".tr,
                                 style: textTheme(context)
                                     .titleSmall
                                     ?.copyWith(color: primaryColor(context)),
@@ -153,7 +153,7 @@ class PresensiIndexView extends GetView<PresensiIndexController> {
                           children: [
                             Center(
                               child: Text(
-                                'Absen',
+                                "Absen".tr,
                                 style: textTheme(context)
                                     .titleSmall
                                     ?.copyWith(color: primaryColor(context)),
@@ -176,7 +176,7 @@ class PresensiIndexView extends GetView<PresensiIndexController> {
                   children: [
                     Icon(Icons.timer, color: primaryColor(context)),
                     16.width,
-                    Text('Riwayat Presensi'),
+                    Text("Riwayat Presensi".tr),
                   ],
                 ),
                 16.height,

@@ -24,7 +24,7 @@ class AuthEmailConfirmationView
                 onPressed: () {
                   Get.back();
                 },
-                label: Text("Kembali"),
+                label: Text("Kembali".tr),
                 icon: Icon(
                   Icons.chevron_left_rounded,
                   color: primaryColor(context),
@@ -47,14 +47,14 @@ class AuthEmailConfirmationView
                   ),
                   16.height,
                   Text(
-                    "Verifikasi Email Dikirimkan!",
+                    "Verifikasi Email Dikirimkan!".tr,
                     style: textTheme(context)
                         .titleLarge
                         ?.copyWith(color: primaryColor(context)),
                   ),
                   16.height,
                   Text(
-                    "Kami telah mengirimkan verifikasi ke alamat email",
+                    "Kami telah mengirimkan verifikasi ke alamat email".tr,
                     style: textTheme(context).bodyMedium,
                   ),
                   16.height,
@@ -85,7 +85,7 @@ class AuthEmailConfirmationView
                                 controller.setTimer();
                               },
                         child: Text(
-                          "Kirim Ulang Verifikasi ${controller.lastVerif > 0 ? "(${controller.lastVerif})" : ''}",
+                          "${"Kirim Ulang Verifikasi".tr} ${controller.lastVerif > 0 ? "(${controller.lastVerif})" : ''}",
                           style: textTheme(context)
                               .titleSmall
                               ?.copyWith(color: primaryColor(context)),
@@ -94,7 +94,8 @@ class AuthEmailConfirmationView
                     ),
                   ),
                   Text(
-                    "Silahkan periksa kotak masuk Anda dan ikuti langkah-langkah verifikasi untuk menyelesaikan proses pendaftaran. Klik Sign In jika anda telah melakukan verifikasi.",
+                    "Silahkan periksa kotak masuk Anda dan ikuti langkah-langkah verifikasi untuk menyelesaikan proses pendaftaran. Klik Sign In jika anda telah melakukan verifikasi."
+                        .tr,
                     style: textTheme(context).bodyMedium,
                     textAlign: TextAlign.center,
                   ),
@@ -116,7 +117,7 @@ class AuthEmailConfirmationView
                               width: 20,
                               child: CircularProgressIndicator())
                           : Text(
-                              "Sign In",
+                              "Sign In".tr,
                             ),
                     ),
                   ),

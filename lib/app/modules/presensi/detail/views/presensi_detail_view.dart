@@ -15,12 +15,12 @@ class PresensiDetailView extends GetView<PresensiDetailController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detail Presensi'),
+        title: Text("Detail Presensi".tr),
         centerTitle: true,
       ),
       body: controller.presensi == null
           ? Center(
-              child: Text('Gagal memuat data presensi'),
+              child: Text("Gagal memuat data presensi".tr),
             )
           : SingleChildScrollView(
               child: Container(
@@ -31,7 +31,7 @@ class PresensiDetailView extends GetView<PresensiDetailController> {
                       color: primaryColor(context),
                       children: [
                         GSTile(
-                          label: 'masuk',
+                          label: "Masuk".tr,
                           value: timeFormatter(controller.presensi!.dateIn),
                           labelStyle: textTheme(context)
                               .labelMedium
@@ -47,7 +47,7 @@ class PresensiDetailView extends GetView<PresensiDetailController> {
                           ),
                         ),
                         GSTile(
-                          label: 'status',
+                          label: "Status".tr,
                           value: controller.presensi!.statusIn ?? '',
                           labelStyle: textTheme(context)
                               .labelMedium
@@ -67,7 +67,7 @@ class PresensiDetailView extends GetView<PresensiDetailController> {
                                 return LinearProgressIndicator();
                               }
                               return GSTile(
-                                label: 'lokasi',
+                                label: "Lokasi".tr,
                                 value: snapshot.data ?? '--',
                                 labelStyle: textTheme(context)
                                     .labelMedium
@@ -80,7 +80,7 @@ class PresensiDetailView extends GetView<PresensiDetailController> {
                               );
                             }),
                         GSTile(
-                          label: 'jarak dari kantor',
+                          label: "Jarak dari kantor",
                           value:
                               "${decimalFormatter(controller.presensi!.distanceIn, defaultText: '-')} M",
                           labelStyle: textTheme(context)
@@ -96,35 +96,35 @@ class PresensiDetailView extends GetView<PresensiDetailController> {
                     GSCardColumn(
                       children: [
                         GSTile(
-                          label: 'keluar',
+                          label: "Keluar".tr,
                           value: timeFormatter(controller.presensi!.dateOut,
-                              defaultText: '-'),
+                              defaultText: "-"),
                           valueStyle: textTheme(context).titleLarge,
                           trailing: Text(
                             dateFormatter(controller.presensi!.dateOut),
                           ),
                         ),
                         GSTile(
-                          label: 'status',
-                          value: controller.presensi!.statusOut ?? '-',
+                          label: "Status".tr,
+                          value: controller.presensi!.statusOut ?? "-",
                         ),
                         FutureBuilder<String>(
                             future: getAddress(
                                 controller.presensi!.coordinateOut?.latitude,
                                 controller.presensi!.coordinateOut?.longitude,
-                                defaultText: '-'),
+                                defaultText: "-"),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
                                 return LinearProgressIndicator();
                               }
                               return GSTile(
-                                label: 'lokasi',
-                                value: snapshot.data ?? '-',
+                                label: "Lokasi".tr,
+                                value: snapshot.data ?? "-",
                               );
                             }),
                         GSTile(
-                          label: 'jarak dari kantor',
+                          label: "Jarak dari kantor".tr,
                           value:
                               "${decimalFormatter(controller.presensi!.distanceOut, defaultText: '-')} M",
                         ),

@@ -50,7 +50,7 @@ class AuthSignUpView extends GetResponsiveView<AuthSignUpController> {
                     child: Column(
                       children: [
                         Text(
-                          "Register",
+                          "Register".tr,
                           style: textTheme(context)
                               .headlineMedium
                               ?.copyWith(color: primaryColor(context)),
@@ -60,7 +60,7 @@ class AuthSignUpView extends GetResponsiveView<AuthSignUpController> {
                           controller: controller.nameC,
                           validator: requiredValidator,
                           decoration: InputDecoration(
-                              labelText: "Name",
+                              labelText: "Name".tr,
                               icon: Icon(Icons.account_circle_rounded)),
                         ),
                         8.height,
@@ -68,7 +68,7 @@ class AuthSignUpView extends GetResponsiveView<AuthSignUpController> {
                           controller: controller.emailC,
                           validator: emailValidator,
                           decoration: InputDecoration(
-                              labelText: "Email",
+                              labelText: "Email".tr,
                               icon: Icon(Icons.email_rounded)),
                         ),
                         8.height,
@@ -78,7 +78,7 @@ class AuthSignUpView extends GetResponsiveView<AuthSignUpController> {
                             obscureText: !controller.showPassword,
                             validator: (value) => minLengthValidator(value, 6),
                             decoration: InputDecoration(
-                                labelText: "Password",
+                                labelText: "Password".tr,
                                 icon: Icon(Icons.lock),
                                 suffixIcon: IconButton(
                                     onPressed: () {
@@ -98,9 +98,9 @@ class AuthSignUpView extends GetResponsiveView<AuthSignUpController> {
                                 controller.confirmPasswordC.text ==
                                         controller.passwordC.text
                                     ? null
-                                    : "Password does not match!",
+                                    : "Password tidak sama!".tr,
                             decoration: InputDecoration(
-                                labelText: "Confirm Password",
+                                labelText: "Konfirmasi Password".tr,
                                 icon: Icon(Icons.lock),
                                 suffixIcon: IconButton(
                                     onPressed: () {
@@ -134,7 +134,7 @@ class AuthSignUpView extends GetResponsiveView<AuthSignUpController> {
                                       width: 20,
                                       child: CircularProgressIndicator())
                                   : Text(
-                                      "Sign Up",
+                                      "Sign Up".tr,
                                     ),
                             ),
                           ),
@@ -145,7 +145,7 @@ class AuthSignUpView extends GetResponsiveView<AuthSignUpController> {
                             Get.offNamed(Routes.AUTH_SIGN_IN);
                           },
                           child: Text(
-                            "Already have an account? \nLogin Here!",
+                            "Sudah punya akun?".tr,
                             textAlign: TextAlign.center,
                           ),
                         ),

@@ -18,20 +18,20 @@ class UsersDetailView extends GetView<UsersDetailController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detail Users'),
+        title: Text('Detail Pengguna'.tr),
         centerTitle: true,
         actions: [
           PopupMenuButton(
             itemBuilder: (context) {
               return [
-                _buildPopUpMenuItem(context, icon: Icons.edit, title: "Edit",
+                _buildPopUpMenuItem(context, icon: Icons.edit, title: "Edit".tr,
                     function: () {
                   Get.offNamed(Routes.USERS_FORM, arguments: controller.user);
                 }),
                 _buildPopUpMenuItem(
                   context,
                   icon: Icons.lock_reset,
-                  title: "Reset Password",
+                  title: "Reset Password".tr,
                   function: () async {
                     controller.resetPassword(context);
                   },
@@ -39,7 +39,7 @@ class UsersDetailView extends GetView<UsersDetailController> {
                 _buildPopUpMenuItem(
                   context,
                   icon: Icons.delete,
-                  title: "Nonaktifkan",
+                  title: "Nonaktifkan".tr,
                   function: () async {
                     await controller.disableUser(context);
                   },
@@ -75,7 +75,7 @@ class UsersDetailView extends GetView<UsersDetailController> {
                     ),
                     isReadOnly: true,
                     initValue: controller.user?.nickname,
-                    label: "Username",
+                    label: "Username".tr,
                   ),
                   16.height,
                   GSTextField(
@@ -85,7 +85,7 @@ class UsersDetailView extends GetView<UsersDetailController> {
                     ),
                     isReadOnly: true,
                     initValue: controller.user?.nama,
-                    label: "Nama Lengkap",
+                    label: "Nama Lengkap".tr,
                   ),
                   16.height,
                   GSTextField(
@@ -97,7 +97,7 @@ class UsersDetailView extends GetView<UsersDetailController> {
                     ),
                     isReadOnly: true,
                     initValue: controller.user?.gender,
-                    label: "Gender",
+                    label: "Gender".tr,
                   ),
                   16.height,
                   GSTextField(
@@ -107,7 +107,7 @@ class UsersDetailView extends GetView<UsersDetailController> {
                     ),
                     isReadOnly: true,
                     initValue: controller.user?.alamat,
-                    label: "Alamat",
+                    label: "Alamat".tr,
                   ),
                 ],
               ),
@@ -121,7 +121,7 @@ class UsersDetailView extends GetView<UsersDetailController> {
                     ),
                     isReadOnly: true,
                     initValue: controller.user?.sekolah,
-                    label: "Asal Sekolah",
+                    label: "Asal Sekolah".tr,
                   ),
                   16.height,
                   GSTextField(
@@ -131,7 +131,7 @@ class UsersDetailView extends GetView<UsersDetailController> {
                       color: primaryColor(context),
                     ),
                     initValue: dateFormatter(controller.user?.tglMasuk),
-                    label: "Tanggal Masuk",
+                    label: "Tanggal Masuk".tr,
                   ),
                 ],
               ),
@@ -145,14 +145,14 @@ class UsersDetailView extends GetView<UsersDetailController> {
                     ),
                     isReadOnly: true,
                     initValue: controller.user?.email,
-                    label: "Email",
+                    label: "Email".tr,
                   ),
                   16.height,
                   GSTextField(
                     initValue: (controller.user?.isActive ?? false)
-                        ? "Active"
-                        : "Nonactive",
-                    label: "Status",
+                        ? "Aktif".tr
+                        : "Nonaktif".tr,
+                    label: "Status".tr,
                     icon: Icon(
                       Icons.check_circle_outline_rounded,
                       color: primaryColor(context),
@@ -161,7 +161,7 @@ class UsersDetailView extends GetView<UsersDetailController> {
                   ),
                   16.height,
                   GSTextField(
-                    label: "Role",
+                    label: "Role".tr,
                     icon: Icon(
                       Icons.admin_panel_settings,
                       color: primaryColor(context),
