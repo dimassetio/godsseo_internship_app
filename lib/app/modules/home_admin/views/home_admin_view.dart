@@ -27,7 +27,8 @@ class HomeAdminView extends GetView<HomeAdminController> {
                 Obx(
                   () => ListTile(
                     title: Text(
-                      "Halo,".trParams({'name': authC.user.nickname ?? ""}),
+                      "Halo,".trParams(
+                          {'name': authC.user.nickname ?? "{username}"}),
                       style: textTheme(context)
                           .titleLarge
                           ?.copyWith(color: primaryColor(context)),

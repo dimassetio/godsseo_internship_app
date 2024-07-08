@@ -102,3 +102,28 @@ Future<String> getAddress(double? lat, double? long,
   }
   return defaultText ?? '';
 }
+
+int countDaysInMonth(DateTime date) {
+  int nextYear = date.month == 12 ? date.year + 1 : date.year;
+  int nextMonth = date.month == 12 ? 1 : date.month + 1;
+  DateTime firstDayOfNextMonth = DateTime(nextYear, nextMonth, 1);
+  DateTime lastDayOfCurrentMonth =
+      firstDayOfNextMonth.subtract(Duration(days: 1));
+  return lastDayOfCurrentMonth.day;
+}
+
+int countActiveDays(DateTime date) {
+  return date.day - countSundayInMonth(date, useCurrentDate: true);
+}
+
+int countSundayInMonth(DateTime date, {bool useCurrentDate = false}) {
+  int days = useCurrentDate ? date.day : countDaysInMonth(date);
+  int sundayCount = 0;
+  for (int day = 1; day <= days; day++) {
+    DateTime newdate = DateTime(date.year, date.month, day);
+    if (newdate.weekday == DateTime.sunday) {
+      sundayCount++;
+    }
+  }
+  return sundayCount;
+}

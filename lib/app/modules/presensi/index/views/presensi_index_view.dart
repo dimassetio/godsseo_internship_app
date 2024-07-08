@@ -1,10 +1,9 @@
 import "package:flutter/material.dart";
 
 import "package:get/get.dart";
-import "package:godsseo/app/data/helpers/formatter.dart";
 import "package:godsseo/app/data/helpers/themes.dart";
-import "package:godsseo/app/data/widgets/card_column.dart";
 import "package:godsseo/app/modules/home/views/presence_card.dart";
+import "package:godsseo/app/modules/presensi/index/views/monthly_recap.dart";
 import "package:nb_utils/nb_utils.dart";
 
 import "../controllers/presensi_index_controller.dart";
@@ -59,117 +58,16 @@ class PresensiIndexView extends GetView<PresensiIndexController> {
                 //     ),
                 //   ),
                 // ),
-                GSCardColumn(
-                  color: primaryColor(context),
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Rekap Presensi Bulanan".tr,
-                          style: textTheme(context)
-                              .bodyMedium
-                              ?.copyWith(color: colorScheme(context).onPrimary),
-                        ),
-                        Obx(
-                          () => TextButton.icon(
-                            onPressed: () {
-                              controller.pickMonth(context);
-                            },
-                            icon: Icon(
-                              Icons.calendar_month,
-                              color: colorScheme(context).onPrimary,
-                            ),
-                            label: Text(
-                              monthFormatter(controller.currentMonth),
-                              style: textTheme(context).bodyMedium?.copyWith(
-                                  color: colorScheme(context).onPrimary),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    4.height,
-                    Row(
-                      children: [
-                        Expanded(
-                            child: GSCardColumn(
-                          elevation: 0,
-                          radius: 8,
-                          padding: 8,
-                          crossAxis: CrossAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: Text(
-                                "Tepat Waktu".tr,
-                                style: textTheme(context)
-                                    .titleSmall
-                                    ?.copyWith(color: primaryColor(context)),
-                              ),
-                            ),
-                            Obx(
-                              () => Text(
-                                decimalFormatter(controller.countTepatWaktu),
-                                style: textTheme(context)
-                                    .titleLarge
-                                    ?.copyWith(color: primaryColor(context)),
-                              ),
-                            ),
-                          ],
-                        )),
-                        16.width,
-                        Expanded(
-                            child: GSCardColumn(
-                          elevation: 0,
-                          radius: 8,
-                          padding: 8,
-                          crossAxis: CrossAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: Text(
-                                "Terlambat".tr,
-                                style: textTheme(context)
-                                    .titleSmall
-                                    ?.copyWith(color: primaryColor(context)),
-                              ),
-                            ),
-                            Obx(
-                              () => Text(
-                                decimalFormatter(controller.countTerlambat),
-                                style: textTheme(context)
-                                    .titleLarge
-                                    ?.copyWith(color: primaryColor(context)),
-                              ),
-                            ),
-                          ],
-                        )),
-                        16.width,
-                        Expanded(
-                            child: GSCardColumn(
-                          elevation: 0,
-                          radius: 8,
-                          padding: 8,
-                          crossAxis: CrossAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: Text(
-                                "Absen".tr,
-                                style: textTheme(context)
-                                    .titleSmall
-                                    ?.copyWith(color: primaryColor(context)),
-                              ),
-                            ),
-                            Text(
-                              decimalFormatter(0),
-                              style: textTheme(context)
-                                  .titleLarge
-                                  ?.copyWith(color: primaryColor(context)),
-                            ),
-                          ],
-                        )),
-                      ],
-                    )
-                  ],
+                Obx(
+                  () => MonthlyPresenceRecap(
+                    pickMonth: () {
+                      controller.pickMonth(context);
+                    },
+                    currentMonth: controller.currentMonth,
+                    countTepatWaktu: controller.countTepatWaktu,
+                    countTerlambat: controller.countTerlambat,
+                    countAbsen: controller.countAbsen,
+                  ),
                 ),
                 Divider(height: 32, thickness: 0.5),
                 Row(

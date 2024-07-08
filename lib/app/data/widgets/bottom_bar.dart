@@ -15,9 +15,12 @@ class GSBottomNavBar extends StatelessWidget {
               Get.toNamed(Routes.HOME_ADMIN);
               break;
             case 1:
-              Get.toNamed(Routes.USERS);
+              Get.toNamed(Routes.PRESENSI_ADMIN);
               break;
             case 2:
+              Get.toNamed(Routes.USERS);
+              break;
+            case 3:
               Get.toNamed(Routes.PROFILE);
               break;
             default:
@@ -25,9 +28,13 @@ class GSBottomNavBar extends StatelessWidget {
           }
         },
         currentIndex: currentIndex,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.dashboard), label: "Dashboard"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.fingerprint), label: "Presence"),
           BottomNavigationBarItem(icon: Icon(Icons.group), label: "Users"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ]);

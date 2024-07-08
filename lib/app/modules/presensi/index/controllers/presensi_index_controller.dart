@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:godsseo/app/data/helpers/formatter.dart';
 import 'package:godsseo/app/data/models/presensi_model.dart';
 import 'package:godsseo/app/data/models/user_model.dart';
 import 'package:godsseo/app/modules/auth/controllers/auth_controller.dart';
@@ -18,6 +19,9 @@ class PresensiIndexController extends GetxController {
 
   int get countTerlambat =>
       presensi.where((value) => value.statusIn == StatusPresensi.late).length;
+
+  int get countAbsen =>
+      countActiveDays(DateTime.now()) - countTepatWaktu - countTerlambat;
 
   RxList<PresensiModel> presensi = RxList();
 

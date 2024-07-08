@@ -34,7 +34,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                     subtitle: Text(
                       "Lama magang".trParams(
-                          {"name": authC.user.countInternDays().toString()}),
+                          {"days": authC.user.countInternDays().toString()}),
                       style: textTheme(context).labelLarge,
                     ),
                     trailing: CircleAvatar(child: Icon(Icons.person)),

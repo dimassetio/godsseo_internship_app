@@ -22,7 +22,7 @@ void main() async {
       title: "Godsseo-App",
       debugShowCheckedModeBanner: false,
       translations: LanguageTranslation(),
-      locale: Get.locale ?? LanguageTranslation.localeEN,
+      locale: Get.locale ?? LanguageTranslation.localeID,
       initialRoute: authController.isLoggedIn
           ? authC.user.hasRole(Role.administrator)
               ? Routes.HOME_ADMIN
