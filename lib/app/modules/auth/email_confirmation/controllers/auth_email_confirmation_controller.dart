@@ -30,7 +30,7 @@ class AuthEmailConfirmationController extends GetxController {
       String? message = await authC.signIn(email, password);
       if (message == null) {
         Get.snackbar("Login Berhasil".tr, "Selamat datang di Godsseo-App".tr);
-        Get.toNamed(Routes.HOME);
+        Get.offAllNamed(Routes.HOME);
       } else {
         Get.snackbar("Error".tr, message.tr);
       }

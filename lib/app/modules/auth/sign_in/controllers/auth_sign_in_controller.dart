@@ -29,12 +29,12 @@ class AuthSignInController extends GetxController {
       if (message == null) {
         if (authC.user.hasRole(Role.magang)) {
           Get.snackbar("Login Berhasil".tr, "Selamat datang di Godsseo-App".tr);
-          Get.toNamed(Routes.HOME);
+          Get.offAllNamed(Routes.HOME);
         } else if (authC.user.hasRoles(
           [Role.administrator, Role.hrd, Role.mentor],
         )) {
           Get.snackbar("Login Berhasil".tr, "Selamat datang di Godsseo-App".tr);
-          Get.toNamed(Routes.HOME_ADMIN);
+          Get.offAllNamed(Routes.HOME_ADMIN);
         } else {
           Get.snackbar(
               "Login Gagal".tr,
