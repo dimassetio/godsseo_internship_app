@@ -70,19 +70,8 @@ class GSFormFoto extends StatelessWidget {
     this.defaultPath = img_logo,
     this.showButton = true,
   });
-  // final ImagePicker _picker = ImagePicker();
   var xfoto = ''.obs;
   String get newPath => xfoto.value;
-
-  // getImage(ImageSource source) async {
-  //   var result = await _picker.pickImage(source: source);
-  //   // if (result is XFile) {
-  //   //   xfoto.value = result.path;
-  //   // }
-  //   if (result is XFile) {
-  //     xfoto.value = result.path;
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {

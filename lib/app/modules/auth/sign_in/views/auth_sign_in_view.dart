@@ -13,10 +13,6 @@ class AuthSignInView extends GetResponsiveView<AuthSignInController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('AuthSignInView'),
-      //   centerTitle: true,
-      // ),
       body: Container(
         alignment: Alignment.center,
         child: SingleChildScrollView(

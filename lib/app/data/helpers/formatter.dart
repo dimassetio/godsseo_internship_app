@@ -13,7 +13,6 @@ String dateTimeFormatter(DateTime? date,
       return DateFormat('d MMM y | H.m', Get.locale?.countryCode).format(date);
     }
     return DateFormat('d MMM y H.m', Get.locale?.countryCode).format(date);
-    // return "${DateFormat.yMMMMd('id').format(date)} ${DateFormat.Hm('id').format(date)}";
   } else
     return def ?? '';
 }

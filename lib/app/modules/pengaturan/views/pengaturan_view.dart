@@ -103,40 +103,6 @@ class PengaturanView extends GetView<PengaturanController> {
                         ),
                       ],
                     ),
-                    // ListView.builder(
-                    //     shrinkWrap: true,
-                    //     physics: ScrollPhysics(),
-                    //     itemCount: 7,
-                    //     itemBuilder: (context, index) {
-                    //       int value = index + 1;
-                    //       return Obx(
-                    //         () => !controller.isEdit &&
-                    //                 !controller.selectedWeeklyOff
-                    //                     .contains(value)
-                    //             ? SizedBox()
-                    //             : CheckboxListTile(
-                    //                 value: controller.selectedWeeklyOff
-                    //                     .contains(value),
-                    //                 onChanged: !controller.isEdit
-                    //                     ? null
-                    //                     : (res) {
-                    //                         if (controller.selectedWeeklyOff
-                    //                             .contains(value)) {
-                    //                           controller.selectedWeeklyOff
-                    //                               .remove(value);
-                    //                         } else {
-                    //                           controller.selectedWeeklyOff = [
-                    //                             ...controller.selectedWeeklyOff,
-                    //                             value
-                    //                           ];
-                    //                         }
-                    //                       },
-                    //                 controlAffinity:
-                    //                     ListTileControlAffinity.leading,
-                    //                 title: Text(getDayName(value)),
-                    //               ),
-                    //       );
-                    //     }),
                     ListView.builder(
                       shrinkWrap: true,
                       physics: ScrollPhysics(),
@@ -170,7 +136,6 @@ class PengaturanView extends GetView<PengaturanController> {
                         });
                       },
                     ),
-
                     if (controller.isEdit)
                       GSButton(
                         title:

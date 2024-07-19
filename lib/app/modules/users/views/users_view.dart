@@ -82,7 +82,6 @@ class UsersCard extends StatelessWidget {
               : CachedNetworkImageProvider(user.foto!),
         ),
         onTap: () {
-          // toast("Go to detail users");
           Get.toNamed(Routes.USERS_DETAIL, arguments: user);
         },
         title: Text(user.nickname ?? "--"),

@@ -26,9 +26,7 @@ class PresencePerformanceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GSCardColumn(
-      onTap: () {
-        // Get.toNamed(Routes.PRESENSI_DETAIL, arguments: data);
-      },
+      onTap: () {},
       margin: EdgeInsets.only(bottom: 16),
       children: [
         Row(

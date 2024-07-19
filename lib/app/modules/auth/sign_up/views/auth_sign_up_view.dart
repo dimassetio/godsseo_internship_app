@@ -15,11 +15,6 @@ class AuthSignUpView extends GetResponsiveView<AuthSignUpController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-        // appBar: AppBar(
-        //   title: const Text('AuthSignUpView'),
-        //   centerTitle: true,
-        // ),
         body: Container(
       alignment: Alignment.center,
       child: SingleChildScrollView(

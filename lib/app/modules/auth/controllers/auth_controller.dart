@@ -8,8 +8,6 @@ AuthController authC = Get.find<AuthController>();
 class AuthController extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // Stream<User?> streamAuth() => _auth.authStateChanges();
-
   var _user = UserModel().obs;
   UserModel get user => _user.value;
   set user(UserModel value) => _user.value = value;
@@ -40,11 +38,8 @@ class AuthController extends GetxController {
         }
       });
     } on FirebaseAuthException catch (e) {
-      // Get.snackbar(e.code.toUpperCase(), e.message ?? '');
       return e.message;
     } catch (e) {
-      // Get.snackbar("Error", e.toString());
-      // return false;
       return e.toString();
     }
   }
@@ -98,7 +93,6 @@ class AuthController extends GetxController {
           : _user.bindStream(user.streamByUid(firebaseUser.value?.uid));
     } catch (e) {
       user = UserModel();
-      // print(e);
     }
   }
 

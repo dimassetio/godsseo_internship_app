@@ -75,7 +75,6 @@ class RulesModel extends Database {
             ? super.collectionReference.doc(id).set(toJson())
             : await super.edit(toJson());
     if (file != null && !id.isEmptyOrNull) {
-      // foto = await super.upload(id: id!, file: file);
       await super.edit(toJson());
     }
     return this;

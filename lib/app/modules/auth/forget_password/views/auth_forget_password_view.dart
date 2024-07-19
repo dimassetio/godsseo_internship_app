@@ -121,7 +121,6 @@ class ResetPasswordDialog extends StatelessWidget {
       insetPadding: EdgeInsets.all(20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Container(
-        // alignment: Alignment.center,
         padding: EdgeInsets.all(16),
         child: Column(
           mainAxisSize: MainAxisSize.min,

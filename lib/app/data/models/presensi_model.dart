@@ -56,7 +56,6 @@ class PresensiModel extends Database {
 
   static Query get collectionGroup => Database.collectionGroup(COLLECTION_NAME);
 
-  // PresensiModel.fromSnapshot(String? id, Map<String, dynamic> json)
   factory PresensiModel.fromSnapshot(DocumentSnapshot doc) {
     var json = doc.data() as Map<String, dynamic>?;
 
@@ -96,7 +95,6 @@ class PresensiModel extends Database {
             ? super.collectionReference.doc(id).set(toJson())
             : await super.edit(toJson());
     if (file != null && !id.isEmptyOrNull) {
-      // foto = await super.upload(id: id!, file: file);
       await super.edit(toJson());
     }
     return this;

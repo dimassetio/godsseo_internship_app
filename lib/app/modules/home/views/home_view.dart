@@ -207,8 +207,6 @@ class HomeView extends GetView<HomeController> {
                               icon: Icon(Icons.location_on_rounded),
                               onPressed: () {
                                 controller.streamPosition();
-                                // controller.isLoading.value =
-                                //     !controller.isLoading.value;
                               },
                               label: controller.position.value == null
                                   ? LinearProgressIndicator()

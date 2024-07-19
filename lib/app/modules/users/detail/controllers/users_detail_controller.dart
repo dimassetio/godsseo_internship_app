@@ -7,10 +7,6 @@ import 'package:godsseo/app/modules/auth/controllers/auth_controller.dart';
 class UsersDetailController extends GetxController {
   UserModel? user;
 
-  // Rxn<UserModel> _user = Rxn();
-  // UserModel? get user => _user.value;
-  // set user(UserModel? value) => _user.value = value;
-
   final _isLoading = false.obs;
   get isLoading => _isLoading.value;
   set isLoading(value) => _isLoading.value = value;

@@ -121,8 +121,6 @@ class UserModel extends Database {
 
   static CollectionReference get getCollectionReference =>
       firestore.collection(COLLECTION_NAME);
-
-  // UserModel.fromSnapshot(String? id, Map<String, dynamic> json)
   UserModel.fromSnapshot(DocumentSnapshot doc)
       : id = doc.id,
         super(

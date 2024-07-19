@@ -22,42 +22,6 @@ class PresensiIndexView extends GetView<PresensiIndexController> {
             padding: EdgeInsets.all(20),
             child: Column(
               children: [
-                // Card(
-                //   shape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.circular(16)),
-                //   margin: EdgeInsets.only(bottom: 16),
-                //   color: primaryColor(context),
-                //   child: Container(
-                //     padding: EdgeInsets.all(16),
-                //     child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //       children: [
-                //         Column(
-                //           crossAxisAlignment: CrossAxisAlignment.start,
-                //           children: [
-                //             Text(
-                //               controller.user.nama ?? "-",
-                //               style: textTheme(context).titleMedium?.copyWith(
-                //                   color: colorScheme(context).onPrimary),
-                //             ),
-                //             2.height,
-                //             CircleContainer(
-                //               color: colorScheme(context).secondary,
-                //               padding: EdgeInsets.symmetric(
-                //                   horizontal: 12, vertical: 2),
-                //               child: Text(
-                //                 controller.user.sekolah ?? "-",
-                //                 style: textTheme(context).labelLarge?.copyWith(
-                //                     color: colorScheme(context).onSecondary),
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //         CircleAvatar(child: Icon(Icons.person)),
-                //       ],
-                //     ),
-                //   ),
-                // ),
                 Obx(
                   () => MonthlyPresenceRecap(
                     pickMonth: () {
