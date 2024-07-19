@@ -2,15 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
+import 'package:godsseo/app/data/helpers/languages.dart';
 import 'package:intl/intl.dart';
 
 String dateTimeFormatter(DateTime? date,
     {bool useSeparator = false, String? def}) {
   if (date is DateTime) {
     if (useSeparator) {
-      return DateFormat('d MMM y | H.m').format(date);
+      return DateFormat('d MMM y | H.m', Get.locale?.countryCode).format(date);
     }
-    return DateFormat('d MMM y H.m').format(date);
+    return DateFormat('d MMM y H.m', Get.locale?.countryCode).format(date);
     // return "${DateFormat.yMMMMd('id').format(date)} ${DateFormat.Hm('id').format(date)}";
   } else
     return def ?? '';
@@ -22,14 +24,44 @@ String dateFormatter(DateTime? date, {bool withDays = false}) {
     if (withDays) {
       format = 'EEE, d MMM y';
     }
-    return DateFormat(format).format(date);
+    return DateFormat(format, Get.locale?.countryCode).format(date);
   } else
     return '';
 }
 
+String getDayName(int weekday) {
+  const List<String> engWeekdays = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+  ];
+  const List<String> idWeekdays = [
+    'Senin',
+    'Selasa',
+    'Rabu',
+    'Kamis',
+    "Jum'at",
+    'Sabtu',
+    'Minggu'
+  ];
+
+  List<String> weekdays() =>
+      Get.locale == LanguageTranslation.localeID ? idWeekdays : engWeekdays;
+
+  if (weekday < 1 || weekday > 7) {
+    throw RangeError('Weekday must be between 1 and 7');
+  }
+
+  return weekdays()[weekday - 1];
+}
+
 String monthFormatter(DateTime? date) {
   if (date is DateTime) {
-    return DateFormat('MMMM y').format(date);
+    return DateFormat('MMMM y', Get.locale?.countryCode).format(date);
   } else
     return '';
 }
@@ -37,8 +69,8 @@ String monthFormatter(DateTime? date) {
 String timeFormatter(DateTime? date,
     {bool withSecond = false, String defaultText = ''}) {
   if (date is DateTime) {
-    String format = withSecond ? 'H:m:s' : 'H:m';
-    return DateFormat(format).format(date);
+    String format = withSecond ? 'HH:mm:s' : 'HH:mm';
+    return DateFormat(format, Get.locale?.countryCode).format(date);
   } else {
     return defaultText;
   }

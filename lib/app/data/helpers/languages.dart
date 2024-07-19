@@ -123,6 +123,22 @@ Map<String, String> indonesia = {
   "Submit": "Submit",
   "Tambah": "Tambah",
   "Upload foto": "Upload foto",
+
+  // PENGATURAN PRESENSI
+  "Pengaturan Presensi": "Pengaturan Presensi",
+  "Waktu Masuk": "Waktu Masuk",
+  "Waktu Keluar": "Waktu Keluar",
+  "Loading": "Loading",
+  "Simpan": "Simpan",
+  "Hari Libur": "Hari Libur",
+  "Deskripsi": "Deskripsi",
+  "Sembunyikan Kemarin": "Sembunyikan Kemarin",
+  "Tampilkan Kemarin": "Tampilkan Kemarin",
+  "Belum ada hari libur": "Belum ada hari libur",
+
+  // HARI LIBUR
+  "Form Hari Libur": "Form Hari Libur",
+  "Tanggal": "Tanggal",
 };
 
 Map<String, String> english = {};

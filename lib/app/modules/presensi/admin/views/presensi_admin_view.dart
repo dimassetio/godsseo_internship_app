@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:godsseo/app/data/helpers/themes.dart';
 import 'package:godsseo/app/data/models/user_model.dart';
+import 'package:godsseo/app/data/widgets/bottom_bar.dart';
 import 'package:godsseo/app/modules/presensi/admin/views/presence_performances_card.dart';
 import 'package:godsseo/app/modules/presensi/index/views/monthly_recap.dart';
+import 'package:godsseo/app/routes/app_pages.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '../controllers/presensi_admin_controller.dart';
@@ -18,11 +20,32 @@ class PresensiAdminView extends GetView<PresensiAdminController> {
           title: const Text('Rekap Presensi'),
           centerTitle: true,
         ),
+        bottomNavigationBar: GSBottomNavBar(currentIndex: 1),
         body: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.all(20),
             child: Column(
               children: [
+                Card(
+                  margin: EdgeInsets.zero,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.settings,
+                      color: primaryColor(context),
+                    ),
+                    horizontalTitleGap: 0,
+                    title: Text("Pengaturan Presensi".tr),
+                    trailing: Icon(Icons.chevron_right_rounded),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)),
+                    onTap: () {
+                      Get.toNamed(Routes.PENGATURAN);
+                    },
+                  ),
+                ),
+                16.height,
                 Obx(
                   () => MonthlyPresenceRecap(
                     pickMonth: () {},

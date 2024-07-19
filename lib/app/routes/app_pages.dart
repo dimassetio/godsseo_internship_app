@@ -10,10 +10,14 @@ import '../modules/auth/sign_in/views/auth_sign_in_view.dart';
 import '../modules/auth/sign_up/bindings/auth_sign_up_binding.dart';
 import '../modules/auth/sign_up/views/auth_sign_up_view.dart';
 import '../modules/auth/views/auth_view.dart';
+import '../modules/dayoff/bindings/dayoff_binding.dart';
+import '../modules/dayoff/views/dayoff_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home_admin/bindings/home_admin_binding.dart';
 import '../modules/home_admin/views/home_admin_view.dart';
+import '../modules/pengaturan/bindings/pengaturan_binding.dart';
+import '../modules/pengaturan/views/pengaturan_view.dart';
 import '../modules/presensi/admin/bindings/presensi_admin_binding.dart';
 import '../modules/presensi/admin/views/presensi_admin_view.dart';
 import '../modules/presensi/detail/bindings/presensi_detail_binding.dart';
@@ -117,5 +121,15 @@ class AppPages {
             binding: PresensiAdminBinding(),
           ),
         ]),
+    GetPage(
+      name: _Paths.PENGATURAN,
+      page: () => const PengaturanView(),
+      binding: PengaturanBinding(),
+    ),
+    GetPage(
+      name: _Paths.DAYOFF,
+      page: () => const DayoffView(),
+      binding: DayoffBinding(),
+    ),
   ];
 }

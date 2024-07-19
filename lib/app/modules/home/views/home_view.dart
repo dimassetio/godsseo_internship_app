@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:godsseo/app/data/helpers/formatter.dart';
 import 'package:godsseo/app/data/helpers/themes.dart';
+import 'package:godsseo/app/data/models/dayoff_model.dart';
 import 'package:godsseo/app/data/widgets/bottom_bar.dart';
 import 'package:godsseo/app/data/widgets/card_column.dart';
 import 'package:godsseo/app/modules/auth/controllers/auth_controller.dart';
@@ -91,133 +92,180 @@ class HomeView extends GetView<HomeController> {
                         color: colorScheme(context).surface.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Masuk".tr,
-                                style: textTheme(context).labelMedium?.copyWith(
-                                    color: colorScheme(context).onPrimary),
-                              ),
-                              Obx(
-                                () => controller.todayPresensi == null
-                                    ? SizedBox(
-                                        width: 32,
-                                        child: LinearProgressIndicator(),
-                                      )
-                                    : Text(
-                                        timeFormatter(
-                                            controller.todayPresensi?.dateIn,
-                                            defaultText: '-- : --'),
+                      child: Obx(
+                        () => controller.todayOff is DayOffModel
+                            ? Column(
+                                children: [
+                                  Text("Hari Libur".tr,
+                                      style: textTheme(context)
+                                          .titleLarge
+                                          ?.copyWith(
+                                              color: colorScheme(context)
+                                                  .onPrimary)),
+                                  Divider(
+                                    color: colorScheme(context).onPrimary,
+                                  ),
+                                  Text(controller.todayOff?.description ?? '',
+                                      style: textTheme(context)
+                                          .titleSmall
+                                          ?.copyWith(
+                                              color: colorScheme(context)
+                                                  .onPrimary)),
+                                ],
+                              )
+                            : Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Masuk".tr,
                                         style: textTheme(context)
-                                            .titleLarge
+                                            .labelMedium
                                             ?.copyWith(
                                                 color: colorScheme(context)
                                                     .onPrimary),
                                       ),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            height: 32,
-                            width: 2,
-                            color: colorScheme(context).onPrimary,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                "Keluar".tr,
-                                style: textTheme(context).labelMedium?.copyWith(
-                                    color: colorScheme(context).onPrimary),
-                              ),
-                              Obx(
-                                () => controller.todayPresensi == null
-                                    ? SizedBox(
-                                        width: 32,
-                                        child: LinearProgressIndicator(),
-                                      )
-                                    : Text(
-                                        timeFormatter(
-                                            controller.todayPresensi?.dateOut,
-                                            defaultText: '-- : --'),
+                                      Obx(
+                                        () => controller.todayPresensi == null
+                                            ? SizedBox(
+                                                width: 32,
+                                                child:
+                                                    LinearProgressIndicator(),
+                                              )
+                                            : Text(
+                                                timeFormatter(
+                                                    controller
+                                                        .todayPresensi?.dateIn,
+                                                    defaultText: '-- : --'),
+                                                style: textTheme(context)
+                                                    .titleLarge
+                                                    ?.copyWith(
+                                                        color:
+                                                            colorScheme(context)
+                                                                .onPrimary),
+                                              ),
+                                      ),
+                                    ],
+                                  ),
+                                  Container(
+                                    height: 32,
+                                    width: 2,
+                                    color: colorScheme(context).onPrimary,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "Keluar".tr,
                                         style: textTheme(context)
-                                            .titleLarge
+                                            .labelMedium
                                             ?.copyWith(
                                                 color: colorScheme(context)
                                                     .onPrimary),
                                       ),
+                                      Obx(
+                                        () => controller.todayPresensi == null
+                                            ? SizedBox(
+                                                width: 32,
+                                                child:
+                                                    LinearProgressIndicator(),
+                                              )
+                                            : Text(
+                                                timeFormatter(
+                                                    controller
+                                                        .todayPresensi?.dateOut,
+                                                    defaultText: '-- : --'),
+                                                style: textTheme(context)
+                                                    .titleLarge
+                                                    ?.copyWith(
+                                                        color:
+                                                            colorScheme(context)
+                                                                .onPrimary),
+                                              ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ],
                       ),
                     )
                   ],
                 ),
                 Divider(height: 32, thickness: 0.5),
                 // Location Section
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Obx(
-                    () => TextButton.icon(
-                      icon: Icon(Icons.location_on_rounded),
-                      onPressed: () {
-                        controller.streamPosition();
-                        // controller.isLoading.value =
-                        //     !controller.isLoading.value;
-                      },
-                      label: controller.position.value == null
-                          ? LinearProgressIndicator()
-                          : Text(
-                              '${controller.position.value?.latitude} : ${controller.position.value?.longitude}',
-                              style: textTheme(context).bodyMedium),
-                    ),
-                  ),
+                Obx(
+                  () => controller.todayOff is DayOffModel
+                      ? SizedBox()
+                      : Align(
+                          alignment: Alignment.centerLeft,
+                          child: Obx(
+                            () => TextButton.icon(
+                              icon: Icon(Icons.location_on_rounded),
+                              onPressed: () {
+                                controller.streamPosition();
+                                // controller.isLoading.value =
+                                //     !controller.isLoading.value;
+                              },
+                              label: controller.position.value == null
+                                  ? LinearProgressIndicator()
+                                  : Text(
+                                      '${controller.position.value?.latitude} : ${controller.position.value?.longitude}',
+                                      style: textTheme(context).bodyMedium),
+                            ),
+                          ),
+                        ).marginOnly(bottom: 8),
                 ),
-                8.height,
                 // Current Status Section
-                Row(
-                  children: [
-                    Expanded(
-                        child: Obx(
-                      () => GSCardColumn(
-                        children: [
-                          Text("Jarak Dari Kantor".tr),
-                          4.height,
-                          Text(
-                            "${decimalFormatter(controller.distance?.toInt(), defaultText: '?')} M",
-                            style: textTheme(context).titleLarge?.copyWith(
-                                  color: controller.distance != null &&
-                                          controller.distance! <=
-                                              controller.rules.distanceTolerance
-                                      ? primaryColor(context)
-                                      : colorScheme(context).error,
+                Obx(
+                  () => controller.todayOff is DayOffModel
+                      ? SizedBox()
+                      : Row(
+                          children: [
+                            Expanded(
+                                child: Obx(
+                              () => GSCardColumn(
+                                children: [
+                                  Text("Jarak Dari Kantor".tr),
+                                  4.height,
+                                  Text(
+                                    "${decimalFormatter(controller.distance?.toInt(), defaultText: '?')} M",
+                                    style: textTheme(context)
+                                        .titleLarge
+                                        ?.copyWith(
+                                          color: controller.distance != null &&
+                                                  controller.distance! <=
+                                                      controller.rules
+                                                          .distanceTolerance
+                                              ? primaryColor(context)
+                                              : colorScheme(context).error,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            )),
+                            16.width,
+                            Expanded(
+                                child: GSCardColumn(
+                              children: [
+                                Text("Status"),
+                                4.height,
+                                Obx(
+                                  () => Text(
+                                    controller.status,
+                                    style:
+                                        textTheme(context).titleLarge?.copyWith(
+                                              color: primaryColor(context),
+                                            ),
+                                  ),
                                 ),
-                          ),
-                        ],
-                      ),
-                    )),
-                    16.width,
-                    Expanded(
-                        child: GSCardColumn(
-                      children: [
-                        Text("Status"),
-                        4.height,
-                        Obx(
-                          () => Text(
-                            controller.status,
-                            style: textTheme(context).titleLarge?.copyWith(
-                                  color: primaryColor(context),
-                                ),
-                          ),
+                              ],
+                            )),
+                          ],
                         ),
-                      ],
-                    )),
-                  ],
                 ),
                 // History Section
                 Row(
@@ -252,15 +300,21 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: primaryColor(context),
-        onPressed: () {
-          controller.presence(context);
-        },
-        child: Icon(
-          Icons.fingerprint_rounded,
-          size: 36,
-          color: colorScheme(context).onPrimary,
+      floatingActionButton: Obx(
+        () => FloatingActionButton(
+          backgroundColor: controller.todayOff is DayOffModel
+              ? theme(context).disabledColor
+              : primaryColor(context),
+          onPressed: controller.todayOff is DayOffModel
+              ? null
+              : () {
+                  controller.presence(context);
+                },
+          child: Icon(
+            Icons.fingerprint_rounded,
+            size: 36,
+            color: colorScheme(context).onPrimary,
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

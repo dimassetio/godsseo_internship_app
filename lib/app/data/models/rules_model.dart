@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:godsseo/app/data/helpers/database.dart';
 import 'package:godsseo/app/data/helpers/formatter.dart';
-import 'package:godsseo/app/data/models/user_model.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 RulesModel defaultRules = RulesModel(
@@ -13,6 +12,7 @@ RulesModel defaultRules = RulesModel(
   distanceTolerance: 20,
   dateIn: TimeOfDay(hour: 8, minute: 0),
   dateOut: TimeOfDay(hour: 16, minute: 30),
+  weeklyOff: [7],
 );
 
 class RulesModel extends Database {
@@ -23,14 +23,14 @@ class RulesModel extends Database {
   static const String DISTANCE_TOLERANCE = "DISTANCE_TOLERANCE";
   static const String DATE_IN = "DATE_IN";
   static const String DATE_OUT = "DATE_OUT";
+  static const String WEEKLY_OFF = "WEEKLY_OFF";
 
   String id;
   TimeOfDay dateIn;
   TimeOfDay dateOut;
   GeoPoint coordinate;
   int distanceTolerance;
-
-  UserModel? userModel;
+  List<int> weeklyOff;
 
   RulesModel({
     required this.id,
@@ -38,6 +38,7 @@ class RulesModel extends Database {
     required this.dateOut,
     required this.coordinate,
     required this.distanceTolerance,
+    required this.weeklyOff,
   }) : super(
           collectionReference: firestore.collection(COLLECTION_NAME),
           storageReference: storage.ref(COLLECTION_NAME),
@@ -52,6 +53,7 @@ class RulesModel extends Database {
       dateOut: dateToTime((json?[DATE_OUT] as Timestamp).toDate())!,
       coordinate: json?[COORDINATE],
       distanceTolerance: json?[DISTANCE_TOLERANCE],
+      weeklyOff: (json?[WEEKLY_OFF] as List).cast<int>(),
     );
   }
 
@@ -62,6 +64,7 @@ class RulesModel extends Database {
       DATE_OUT: timeToDate(dateOut),
       COORDINATE: coordinate,
       DISTANCE_TOLERANCE: distanceTolerance,
+      WEEKLY_OFF: weeklyOff,
     };
   }
 

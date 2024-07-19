@@ -4,6 +4,68 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:godsseo/app/data/helpers/database.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+class Gaji {
+  static const String POKOK = "POKOK";
+  static const String TUNJANGAN_MAKAN = "TUNJANGAN_MAKAN";
+  static const String TUNJANGAN_TRANSPORT = "TUNJANGAN_TRANSPORT";
+  static const String TUNJANGAN_KESEHATAN = "TUNJANGAN_KESEHATAN";
+  static const String BONUS_PROFESSIONAL = "BONUS_PROFESSIONAL";
+  static const String POTONGAN_TERLAMBAT = "POTONGAN_TERLAMBAT";
+  static const String POTONGAN_SAKIT = "POTONGAN_SAKIT";
+  static const String POTONGAN_IZIN = "POTONGAN_IZIN";
+  static const String POTONGAN_ABSEN = "POTONGAN_ABSEN";
+
+  int pokok;
+  int tunjMakan;
+  int tunjTransport;
+  int tunjKesehatan;
+  int bonusPro;
+  int potTerlambat;
+  int potSakit;
+  int potIzin;
+  int potAbsen;
+
+  Gaji({
+    required this.pokok,
+    required this.tunjMakan,
+    required this.tunjTransport,
+    required this.tunjKesehatan,
+    required this.bonusPro,
+    required this.potTerlambat,
+    required this.potSakit,
+    required this.potIzin,
+    required this.potAbsen,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      POKOK: pokok,
+      TUNJANGAN_MAKAN: tunjMakan,
+      TUNJANGAN_TRANSPORT: tunjTransport,
+      TUNJANGAN_KESEHATAN: tunjKesehatan,
+      BONUS_PROFESSIONAL: bonusPro,
+      POTONGAN_TERLAMBAT: potTerlambat,
+      POTONGAN_SAKIT: potSakit,
+      POTONGAN_IZIN: potIzin,
+      POTONGAN_ABSEN: potAbsen,
+    };
+  }
+
+  factory Gaji.fromSnapshot(DocumentSnapshot doc) {
+    Map<String, dynamic> json = doc.data() as Map<String, dynamic>;
+    return Gaji(
+        pokok: json[POKOK],
+        tunjMakan: json[TUNJANGAN_MAKAN],
+        tunjTransport: json[TUNJANGAN_TRANSPORT],
+        tunjKesehatan: json[TUNJANGAN_KESEHATAN],
+        bonusPro: json[BONUS_PROFESSIONAL],
+        potTerlambat: json[POTONGAN_TERLAMBAT],
+        potSakit: json[POTONGAN_SAKIT],
+        potIzin: json[POTONGAN_IZIN],
+        potAbsen: json[POTONGAN_ABSEN]);
+  }
+}
+
 class UserModel extends Database {
   static const String COLLECTION_NAME = "users";
 

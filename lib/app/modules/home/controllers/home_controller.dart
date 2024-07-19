@@ -5,6 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:godsseo/app/data/helpers/formatter.dart';
 import 'package:godsseo/app/data/helpers/location_service.dart';
+import 'package:godsseo/app/data/models/dayoff_model.dart';
 import 'package:godsseo/app/data/models/presensi_model.dart';
 import 'package:godsseo/app/data/models/rules_model.dart';
 import 'package:godsseo/app/data/widgets/dialog.dart';
@@ -34,6 +35,33 @@ class HomeController extends GetxController {
       isLoading.value = true;
       var _stream = await streamPositionService();
       position.bindStream(_stream);
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  bool get isWeeklyOff =>
+      _rules.value.weeklyOff.contains(DateTime.now().weekday);
+  Rxn<DayOffModel> _dayOff = Rxn();
+  DayOffModel? get todayOff =>
+      _dayOff.value ??
+      (isWeeklyOff
+          ? DayOffModel(
+              date: toStartOfDay(DateTime.now()),
+              description: getDayName(DateTime.now().weekday))
+          : null);
+
+  Future<DayOffModel?> getTodayOff() async {
+    try {
+      isLoading.value = true;
+      DateTime today = toStartOfDay(DateTime.now());
+      var res = await DayOffModel.collection
+          .where(DayOffModel.DATE, isEqualTo: today)
+          .get()
+          .then((value) =>
+              value.docs.map((e) => DayOffModel.fromSnapshot(e)).firstOrNull);
+      _dayOff.value = res;
+      return res;
     } finally {
       isLoading.value = false;
     }
@@ -161,6 +189,7 @@ class HomeController extends GetxController {
     Timer.periodic(Duration(seconds: 1), (timer) {
       _now.value = DateTime.now();
     });
+    getTodayOff();
     streamPosition();
     ever(
       position,

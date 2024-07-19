@@ -53,6 +53,7 @@ class PresensiIndexController extends GetxController {
   void onInit() {
     super.onInit();
     presensi.bindStream(_streamPresensi());
+    ever(_currentMonth, (callback) => presensi.bindStream(_streamPresensi()));
   }
 
   @override

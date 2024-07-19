@@ -7,11 +7,15 @@ import 'package:godsseo/app/data/helpers/languages.dart';
 import 'package:godsseo/app/data/helpers/themes.dart';
 import 'package:godsseo/app/data/models/user_model.dart';
 import 'package:godsseo/app/modules/auth/controllers/auth_controller.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'app/routes/app_pages.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  LanguageTranslation.localeList.forEach(
+    (element) async => await initializeDateFormatting(element.countryCode),
+  );
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
