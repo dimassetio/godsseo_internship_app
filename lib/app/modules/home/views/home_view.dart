@@ -275,9 +275,15 @@ class HomeView extends GetView<HomeController> {
                       onPressed: () {
                         Get.toNamed(Routes.PRESENSI_INDEX);
                       },
-                      child: Text(
-                        "Lihat semua".tr,
-                        style: textTheme(context).labelMedium,
+                      child: Row(
+                        children: [
+                          Icon(Icons.history, size: 20),
+                          8.width,
+                          Text(
+                            "Lihat semua".tr,
+                            style: textTheme(context).labelMedium,
+                          ),
+                        ],
                       ),
                     ),
                   ],
