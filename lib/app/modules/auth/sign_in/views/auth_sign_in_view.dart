@@ -118,15 +118,15 @@ class AuthSignInView extends GetResponsiveView<AuthSignInController> {
                             ),
                           ),
                           16.height,
-                          TextButton(
-                            onPressed: () {
-                              Get.offNamed(Routes.AUTH_SIGN_UP);
-                            },
-                            child: Text(
-                              "Didn't have an account?".tr,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
+                          // TextButton(
+                          //   onPressed: () {
+                          //     Get.offNamed(Routes.AUTH_SIGN_UP);
+                          //   },
+                          //   child: Text(
+                          //     "Didn't have an account?".tr,
+                          //     textAlign: TextAlign.center,
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
