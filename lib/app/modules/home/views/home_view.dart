@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -38,7 +39,11 @@ class HomeView extends GetView<HomeController> {
                           {"days": authC.user.countInternDays().toString()}),
                       style: textTheme(context).labelLarge,
                     ),
-                    trailing: CircleAvatar(child: Icon(Icons.person)),
+                    trailing: CircleAvatar(
+                        foregroundImage: authC.user.foto.isEmptyOrNull
+                            ? null
+                            : CachedNetworkImageProvider(authC.user.foto!),
+                        child: Icon(Icons.person)),
                   ),
                 ),
                 16.height,

@@ -1,5 +1,8 @@
+import "dart:io";
+
 import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter/material.dart";
+import "package:flutter_image_compress/flutter_image_compress.dart";
 
 import "package:get/get.dart";
 import "package:godsseo/app/data/helpers/formatter.dart";
@@ -8,6 +11,7 @@ import "package:godsseo/app/data/models/user_model.dart";
 import "package:godsseo/app/data/widgets/bottom_bar.dart";
 import "package:godsseo/app/data/widgets/card_column.dart";
 import "package:godsseo/app/data/widgets/dialog.dart";
+import "package:godsseo/app/data/widgets/form_foto.dart";
 import "package:godsseo/app/data/widgets/tile.dart";
 import "package:godsseo/app/modules/auth/controllers/auth_controller.dart";
 import "package:nb_utils/nb_utils.dart";
@@ -46,16 +50,54 @@ class ProfileView extends GetView<ProfileController> {
           padding: EdgeInsets.all(16),
           child: Column(
             children: [
-              CircleAvatar(
-                  backgroundColor: primaryColor(context),
-                  child: Icon(
-                    Icons.person,
-                    size: 60,
+              Stack(
+                children: [
+                  Obx(
+                    () => CircleAvatar(
+                        backgroundColor: primaryColor(context),
+                        backgroundImage:
+                            (authC.user.foto?.isEmptyOrNull ?? true)
+                                ? null
+                                : CachedNetworkImageProvider(authC.user.foto!),
+                        foregroundImage: controller.selectedPhotoPath.isEmpty
+                            ? null
+                            : FileImage(
+                                File(controller.selectedPhotoPath.value)),
+                        radius: 60,
+                        child: (authC.user.foto?.isEmptyOrNull ?? true)
+                            ? Icon(
+                                Icons.person,
+                                size: 60,
+                              )
+                            : null),
                   ),
-                  foregroundImage: (authC.user.foto.isEmptyOrNull)
-                      ? null
-                      : CachedNetworkImageProvider(authC.user.foto!),
-                  radius: 60),
+                  SizedBox(
+                    height: 120,
+                    width: 120,
+                    child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: Obx(
+                          () => IconButton(
+                            onPressed: controller.isLoading
+                                ? null
+                                : () async {
+                                    var result =
+                                        await imagePickerBottomSheet(context);
+                                    if (result is XFile) {
+                                      controller.selectedPhotoPath.value =
+                                          result.path;
+                                      await controller.save();
+                                    }
+                                  },
+                            icon: CircleAvatar(
+                                child: controller.isLoading
+                                    ? CircularProgressIndicator()
+                                    : Icon(Icons.camera)),
+                          ),
+                        )),
+                  )
+                ],
+              ),
               16.height,
               GSCardColumn(
                 children: [
