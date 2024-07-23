@@ -5,7 +5,7 @@ import 'package:godsseo/app/data/helpers/formatter.dart';
 import 'package:godsseo/app/data/helpers/themes.dart';
 import 'package:godsseo/app/data/widgets/button.dart';
 import 'package:godsseo/app/data/widgets/card_column.dart';
-import 'package:godsseo/app/data/widgets/circle_container.dart';
+import 'package:godsseo/app/data/widgets/dialog.dart';
 import 'package:godsseo/app/data/widgets/text_field.dart';
 import 'package:godsseo/app/routes/app_pages.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -195,23 +195,38 @@ class PengaturanView extends GetView<PengaturanController> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    dateFormatter(data.date, withDays: true),
-                                    style: textTheme(context).titleMedium,
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        dateFormatter(data.date,
+                                            withDays: true),
+                                        style: textTheme(context).titleMedium,
+                                      ),
+                                      Text(
+                                        data.description ?? '',
+                                        style: textTheme(context).labelMedium,
+                                      ),
+                                    ],
                                   ),
-                                  CircleContainer(
-                                    color: primaryColor(context),
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 2, horizontal: 8),
-                                    child: Text(
-                                      data.description ?? '',
-                                      style: textTheme(context)
-                                          .bodyMedium
-                                          ?.copyWith(
-                                              color: colorScheme(context)
-                                                  .onPrimary),
-                                    ),
-                                  ),
+                                  IconButton(
+                                      onPressed: () async {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (context) => GSDialog(
+                                              title: "Apakah anda yakin?".tr,
+                                              subtitle:
+                                                  "Anda akan menghapus hari libur ini, lanjutkan?",
+                                              negativeText: "Batal".tr,
+                                              onConfirm: () => controller
+                                                  .deleteDayOff(data)),
+                                        );
+                                      },
+                                      icon: Icon(
+                                        Icons.delete,
+                                        color: colorScheme(context).error,
+                                      ))
                                 ],
                               )
                             ],

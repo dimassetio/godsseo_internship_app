@@ -35,17 +35,33 @@ class HomeAdminController extends GetxController {
   set isLoading(value) => this._isLoading.value = value;
 
   Future<int> getUserMagang() async {
-    try {
-      isLoading = true;
-      userMagang = await UserModel.getCollectionReference
-          .where(UserModel.ROLE, isEqualTo: Role.magang)
-          .count()
-          .get()
-          .then((value) => value.count ?? 0);
-      return userMagang;
-    } finally {
-      isLoading = false;
+    int maxRetries = 5;
+    int retryCount = 0;
+    int delay = 1000;
+
+    while (retryCount < maxRetries) {
+      try {
+        isLoading = true;
+        var query = UserModel.getCollectionReference
+            .where(UserModel.ROLE, isEqualTo: Role.magang)
+            .where(UserModel.IS_ACTIVE, isEqualTo: true)
+            .count();
+
+        var querySnapshot = await query.get();
+        userMagang = querySnapshot.count ?? 0;
+        return userMagang;
+      } catch (e) {
+        retryCount++;
+        if (retryCount >= maxRetries) {
+          print('Failed after $retryCount attempts: $e');
+          rethrow; // Re-throw the exception after max retries
+        }
+        await Future.delayed(Duration(milliseconds: delay * retryCount));
+      } finally {
+        isLoading = false;
+      }
     }
+    return 0;
   }
 
   @override

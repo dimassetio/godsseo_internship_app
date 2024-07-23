@@ -48,8 +48,10 @@ class PresensiAdminView extends GetView<PresensiAdminController> {
                 16.height,
                 Obx(
                   () => MonthlyPresenceRecap(
-                    pickMonth: () {},
-                    currentMonth: DateTime.now(),
+                    pickMonth: () {
+                      controller.pickMonth(context);
+                    },
+                    currentMonth: controller.currentMonth,
                     countTepatWaktu: controller.countTepatWaktu,
                     countTerlambat: controller.countTerlambat,
                     countAbsen: controller.countAbsen,
@@ -84,16 +86,19 @@ class PresensiAdminView extends GetView<PresensiAdminController> {
                               itemCount: snapshot.data?.length ?? 0,
                               itemBuilder: (context, index) {
                                 UserModel user = snapshot.data![index];
-                                return FutureBuilder<Performance?>(
-                                  future: controller.getPerformances(user),
-                                  builder: (context, snapshot) =>
-                                      PresencePerformanceCard(
-                                    data: user,
-                                    isLoading: snapshot.connectionState ==
-                                        ConnectionState.waiting,
-                                    absen: snapshot.data?.absen ?? 99,
-                                    tepatWaktu: snapshot.data?.masuk ?? 99,
-                                    terlambat: snapshot.data?.terlambat ?? 99,
+                                return Obx(
+                                  () => FutureBuilder<Performance?>(
+                                    future: controller.getPerformances(
+                                        user, controller.currentMonth),
+                                    builder: (context, snapshot) =>
+                                        PresencePerformanceCard(
+                                      data: user,
+                                      isLoading: snapshot.connectionState ==
+                                          ConnectionState.waiting,
+                                      absen: snapshot.data?.absen ?? 99,
+                                      tepatWaktu: snapshot.data?.masuk ?? 99,
+                                      terlambat: snapshot.data?.terlambat ?? 99,
+                                    ),
                                   ),
                                 );
                               },

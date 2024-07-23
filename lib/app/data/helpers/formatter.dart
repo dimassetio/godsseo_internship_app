@@ -143,18 +143,25 @@ int countDaysInMonth(DateTime date) {
   return lastDayOfCurrentMonth.day;
 }
 
-int countActiveDays(DateTime date) {
-  return date.day - countSundayInMonth(date, useCurrentDate: true);
+DateTime getNextMonth(DateTime date) {
+  int nextYear = date.month == 12 ? date.year + 1 : date.year;
+  int nextMonth = date.month == 12 ? 1 : date.month + 1;
+  return DateTime(nextYear, nextMonth, 1);
 }
 
-int countSundayInMonth(DateTime date, {bool useCurrentDate = false}) {
-  int days = useCurrentDate ? date.day : countDaysInMonth(date);
-  int sundayCount = 0;
-  for (int day = 1; day <= days; day++) {
-    DateTime newdate = DateTime(date.year, date.month, day);
-    if (newdate.weekday == DateTime.sunday) {
-      sundayCount++;
-    }
-  }
-  return sundayCount;
-}
+// int countActiveDays(DateTime date, {bool useDate = true}) {
+//   return (useDate ? date.day : countDaysInMonth(date)) -
+//       countSundayInMonth(date, useCurrentDate: useDate);
+// }
+
+// int countSundayInMonth(DateTime date, {bool useCurrentDate = false}) {
+//   int days = useCurrentDate ? date.day : countDaysInMonth(date);
+//   int sundayCount = 0;
+//   for (int day = 1; day <= days; day++) {
+//     DateTime newdate = DateTime(date.year, date.month, day);
+//     if (newdate.weekday == DateTime.sunday) {
+//       sundayCount++;
+//     }
+//   }
+//   return sundayCount;
+// }

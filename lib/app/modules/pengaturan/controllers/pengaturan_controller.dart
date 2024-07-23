@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:godsseo/app/data/helpers/formatter.dart';
 import 'package:godsseo/app/data/models/dayoff_model.dart';
 import 'package:godsseo/app/data/models/rules_model.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class PengaturanController extends GetxController {
   Rx<RulesModel> _rules = defaultRules.obs;
@@ -83,6 +84,23 @@ class PengaturanController extends GetxController {
 
   bindDaysOff(bool value) {
     daysoff.bindStream(streamDaysOff(value));
+  }
+
+  Future deleteDayOff(DayOffModel model) async {
+    try {
+      isLoading = true;
+      if (model.id.isEmptyOrNull) {
+        Get.snackbar("Error", "Gagal mendeteksi data");
+        return null;
+      }
+      await model.delete(model.id!);
+      Get.back();
+      Get.snackbar("Berhasil", "Data berhasil dihapus");
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    } finally {
+      isLoading = false;
+    }
   }
 
   @override

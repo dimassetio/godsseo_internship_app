@@ -11,6 +11,10 @@ class PresensiIndexController extends GetxController {
   DateTime get currentMonth => _currentMonth.value;
   set currentMonth(DateTime value) => _currentMonth.value = value;
 
+  bool get isSameMonth =>
+      currentMonth.year == DateTime.now().year &&
+      currentMonth.month == DateTime.now().month;
+
   DateTime get nextMonth =>
       DateTime(_currentMonth.value.year, _currentMonth.value.month + 1);
 
@@ -21,7 +25,9 @@ class PresensiIndexController extends GetxController {
       presensi.where((value) => value.statusIn == StatusPresensi.late).length;
 
   int get countAbsen =>
-      countActiveDays(DateTime.now()) - countTepatWaktu - countTerlambat;
+      (isSameMonth ? DateTime.now().day : countDaysInMonth(currentMonth)) -
+      countTepatWaktu -
+      countTerlambat;
 
   RxList<PresensiModel> presensi = RxList();
 
