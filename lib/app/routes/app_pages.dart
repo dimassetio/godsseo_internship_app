@@ -20,6 +20,8 @@ import '../modules/pengaturan/bindings/pengaturan_binding.dart';
 import '../modules/pengaturan/views/pengaturan_view.dart';
 import '../modules/presensi/admin/bindings/presensi_admin_binding.dart';
 import '../modules/presensi/admin/views/presensi_admin_view.dart';
+import '../modules/presensi/admin_history/bindings/presensi_admin_history_binding.dart';
+import '../modules/presensi/admin_history/views/presensi_admin_history_view.dart';
 import '../modules/presensi/detail/bindings/presensi_detail_binding.dart';
 import '../modules/presensi/detail/views/presensi_detail_view.dart';
 import '../modules/presensi/index/bindings/presensi_index_binding.dart';
@@ -119,6 +121,11 @@ class AppPages {
             name: _Paths.ADMIN,
             page: () => const PresensiAdminView(),
             binding: PresensiAdminBinding(),
+          ),
+          GetPage(
+            name: _Paths.ADMIN_HISTORY,
+            page: () => const PresensiAdminHistoryView(),
+            binding: PresensiAdminHistoryBinding(),
           ),
         ]),
     GetPage(

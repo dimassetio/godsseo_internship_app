@@ -20,6 +20,7 @@ abstract class Routes {
   static const PRESENSI_ADMIN = _Paths.PRESENSI + _Paths.ADMIN;
   static const PENGATURAN = _Paths.PENGATURAN;
   static const DAYOFF = _Paths.DAYOFF;
+  static const PRESENSI_ADMIN_HISTORY = _Paths.PRESENSI + _Paths.ADMIN_HISTORY;
 }
 
 abstract class _Paths {
@@ -40,4 +41,5 @@ abstract class _Paths {
   static const ADMIN = '/admin';
   static const PENGATURAN = '/pengaturan';
   static const DAYOFF = '/dayoff';
+  static const ADMIN_HISTORY = '/admin-history';
 }

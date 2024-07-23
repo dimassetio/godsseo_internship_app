@@ -7,7 +7,7 @@ import 'package:godsseo/app/data/widgets/bottom_bar.dart';
 import 'package:godsseo/app/data/widgets/card_column.dart';
 import 'package:godsseo/app/data/widgets/circle_container.dart';
 import 'package:godsseo/app/modules/auth/controllers/auth_controller.dart';
-import 'package:godsseo/app/modules/home_admin/views/presence_admin_card.dart';
+import 'package:godsseo/app/modules/presensi/admin_history/views/presence_admin_card.dart';
 import 'package:godsseo/app/routes/app_pages.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -174,7 +174,7 @@ class HomeAdminView extends GetView<HomeAdminController> {
                     Expanded(child: Divider(height: 48, thickness: 0.5)),
                     TextButton(
                       onPressed: () {
-                        Get.toNamed(Routes.PRESENSI_INDEX);
+                        Get.toNamed(Routes.PRESENSI_ADMIN_HISTORY);
                       },
                       child: Text(
                         "Lihat semua".tr,
