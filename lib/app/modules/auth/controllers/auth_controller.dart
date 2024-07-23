@@ -26,9 +26,9 @@ class AuthController extends GetxController {
         if (getUserModel == null) {
           await _auth.signOut();
           return "Data user tidak ditemukan";
-        } else if ((!(value.user?.emailVerified ?? false))) {
-          await _auth.signOut();
-          return "Email belum diverifikasi";
+          // } else if ((!(value.user?.emailVerified ?? false))) {
+          //   await _auth.signOut();
+          //   return "Email belum diverifikasi";
         } else if (!(getUserModel.isActive ?? false)) {
           await _auth.signOut();
           return "User tidak aktif";
@@ -70,7 +70,7 @@ class AuthController extends GetxController {
             role: role ?? Role.magang,
             isActive: true);
         await userModel.save(isSet: true);
-        await faUser.sendEmailVerification();
+        // await faUser.sendEmailVerification();
         return null;
       }
       return "Gagal mendaftarkan user";
@@ -111,13 +111,13 @@ class AuthController extends GetxController {
   Future<UserModel?> getActiveUser() async {
     try {
       if (_auth.currentUser is User) {
-        if (_auth.currentUser!.emailVerified) {
-          var user = await UserModel(id: _auth.currentUser?.uid).getUser();
-          return user;
-        } else {
-          _auth.signOut();
-          return null;
-        }
+        // if (_auth.currentUser!.emailVerified) {
+        var user = await UserModel(id: _auth.currentUser?.uid).getUser();
+        return user;
+        // } else {
+        //   _auth.signOut();
+        //   return null;
+        // }
       } else {
         return null;
       }

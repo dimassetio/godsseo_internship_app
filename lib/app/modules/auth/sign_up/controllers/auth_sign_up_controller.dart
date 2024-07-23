@@ -30,8 +30,9 @@ class AuthSignUpController extends GetxController {
       var message = await authC.signUp(
           nickname: nameC.text, email: emailC.text, password: passwordC.text);
       if (message.isEmptyOrNull) {
-        Get.toNamed(Routes.AUTH_EMAIL_CONFIRMATION,
-            arguments: [emailC.text, passwordC.text]);
+        // Get.toNamed(Routes.AUTH_EMAIL_CONFIRMATION,
+        //     arguments: [emailC.text, passwordC.text]);
+        Get.offAllNamed(Routes.HOME);
       } else {
         Get.snackbar("Error".tr, message!.tr);
       }
