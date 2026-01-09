@@ -54,7 +54,8 @@ class HomeController extends GetxController {
       (isWeeklyOff
           ? DayOffModel(
               date: toStartOfDay(DateTime.now()),
-              description: getDayName(DateTime.now().weekday))
+              description: getDayName(DateTime.now().weekday),
+            )
           : null);
 
   Future<DayOffModel?> getTodayOff() async {
@@ -64,8 +65,10 @@ class HomeController extends GetxController {
       var res = await DayOffModel.collection
           .where(DayOffModel.DATE, isEqualTo: today)
           .get()
-          .then((value) =>
-              value.docs.map((e) => DayOffModel.fromSnapshot(e)).firstOrNull);
+          .then(
+            (value) =>
+                value.docs.map((e) => DayOffModel.fromSnapshot(e)).firstOrNull,
+          );
       _dayOff.value = res;
       return res;
     } finally {
@@ -76,14 +79,17 @@ class HomeController extends GetxController {
   _onPositionChanged(Position? position) async {
     if (position is Position) {
       distance = Geolocator.distanceBetween(
-          position.latitude,
-          position.longitude,
-          rules.coordinate.latitude,
-          rules.coordinate.longitude);
+        position.latitude,
+        position.longitude,
+        rules.coordinate.latitude,
+        rules.coordinate.longitude,
+      );
 
       try {
         List<Placemark> placemarks = await placemarkFromCoordinates(
-            position.latitude, position.longitude);
+          position.latitude,
+          position.longitude,
+        );
 
         if (placemarks.isNotEmpty) {
           Placemark place = placemarks[0];
@@ -103,7 +109,7 @@ class HomeController extends GetxController {
       'Kamis',
       'Jumat',
       'Sabtu',
-      'Minggu'
+      'Minggu',
     ];
     String todayName = days[DateTime.now().weekday - 1];
 
@@ -132,20 +138,22 @@ class HomeController extends GetxController {
   }
 
   Stream<PresensiModel> _streamTodayPresensi() {
-    return PresensiModel(userId: authC.user.id!)
-        .collectionReference
+    return PresensiModel(userId: authC.user.id!).collectionReference
         .where(PresensiModel.DATE_IN, isGreaterThanOrEqualTo: toStartOfDay(now))
         .where(PresensiModel.DATE_IN, isLessThanOrEqualTo: toEndOfDay(now))
         .limit(1)
         .snapshots()
-        .map((value) =>
-            value.docs.map((e) => PresensiModel.fromSnapshot(e)).firstOrNull ??
-            PresensiModel(userId: authC.user.id!));
+        .map(
+          (value) =>
+              value.docs
+                  .map((e) => PresensiModel.fromSnapshot(e))
+                  .firstOrNull ??
+              PresensiModel(userId: authC.user.id!),
+        );
   }
 
   Stream<List<PresensiModel>> _streamPresensi() {
-    return PresensiModel(userId: authC.user.id!)
-        .collectionReference
+    return PresensiModel(userId: authC.user.id!).collectionReference
         .orderBy(PresensiModel.DATE_IN, descending: true)
         .limit(7)
         .snapshots()
@@ -220,7 +228,7 @@ class HomeController extends GetxController {
             'jenis': jenisPresensi,
             'waktu': dateTimeFormatter(now),
             'jarak': distance?.toInt().toString() ?? '',
-            'status': status
+            'status': status,
           }),
           negativeText: 'Batal',
           confirmText: _isLoading.value ? 'Loading..'.tr : 'Ok'.tr,
@@ -239,7 +247,9 @@ class HomeController extends GetxController {
                     await model.save();
                     Get.back();
                     Get.snackbar(
-                        "Berhasil".tr, "Presensi berhasil disimpan".tr);
+                      "Berhasil".tr,
+                      "Presensi berhasil disimpan".tr,
+                    );
                   } finally {
                     _isLoading.value = false;
                   }
@@ -260,10 +270,7 @@ class HomeController extends GetxController {
     getTodayOff();
     streamPosition();
     checkPiketStatus();
-    ever(
-      position,
-      _onPositionChanged,
-    );
+    ever(position, _onPositionChanged);
     _rules.bindStream(defaultRules.stream());
     _todayPresensi.bindStream(_streamTodayPresensi());
     presensi.bindStream(_streamPresensi());
