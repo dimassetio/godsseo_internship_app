@@ -1,13 +1,12 @@
 # Godsseo
 
-Production-ready Flutter application using Firebase, GetX, localization, and multi-platform support.
+Godsseo-App is an internal Godsseo company application built with Flutter to manage internship employee attendance using GPS-based location validation and time tracking. The system is designed to improve discipline, transparency, and operational efficiency through a fully digital attendance workflow.
 
-## Overview
-- Role-aware navigation (Admin vs User) with `GetX` routing.
-- Firebase integration: Auth, Firestore, Storage, and App Check.
-- Internationalization (multiple locales) and date formatting via `intl`.
-- Theming, cached images, SVG assets, image picking and compression.
-- Geolocation and reverse geocoding support.
+The application implements a multi-role system (Admin & User) with core features including:
+- Real-time GPS-based attendance
+- Leave request and approval workflow
+- Duty (picket) scheduling and task checklist
+- Activity monitoring for interns
 
 ## Tech Stack
 - Flutter + Dart
