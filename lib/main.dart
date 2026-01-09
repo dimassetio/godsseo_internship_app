@@ -16,9 +16,8 @@ void main() async {
   LanguageTranslation.localeList.forEach(
     (element) async => await initializeDateFormatting(element.countryCode),
   );
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  Get.locale = LanguageTranslation.localeID;
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   var authController = Get.put(AuthController(), permanent: true);
   await authController.getActiveUser();
   runApp(
@@ -26,11 +25,11 @@ void main() async {
       title: "Godsseo-App",
       debugShowCheckedModeBanner: false,
       translations: LanguageTranslation(),
-      locale: Get.locale ?? LanguageTranslation.localeID,
+      locale: LanguageTranslation.localeID,
       initialRoute: authController.isLoggedIn
           ? authC.user.hasRole(Role.administrator)
-              ? Routes.HOME_ADMIN
-              : Routes.HOME
+                ? Routes.HOME_ADMIN
+                : Routes.HOME
           : Routes.AUTH_SIGN_IN,
       getPages: AppPages.routes,
       theme: mainTheme,

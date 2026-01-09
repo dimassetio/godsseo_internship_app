@@ -15,10 +15,12 @@ class PiketUserView extends GetView<PiketUserController> {
     final Color cardTop = const Color(0xFF2979FF);
     final Color cardBottom = const Color(0xFF003399);
 
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: headerColor,
-      statusBarIconBrightness: Brightness.light,
-    ));
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: headerColor,
+        statusBarIconBrightness: Brightness.light,
+      ),
+    );
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
@@ -46,8 +48,10 @@ class PiketUserView extends GetView<PiketUserController> {
                           shape: BoxShape.circle,
                         ),
                         child: IconButton(
-                          icon:
-                              const Icon(Icons.arrow_back, color: Colors.white),
+                          icon: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                          ),
                           onPressed: () => Get.offAllNamed(Routes.HOME),
                         ),
                       ),
@@ -84,9 +88,10 @@ class PiketUserView extends GetView<PiketUserController> {
                             borderRadius: BorderRadius.circular(24),
                             boxShadow: [
                               BoxShadow(
-                                  color: cardBottom.withOpacity(0.4),
-                                  blurRadius: 20,
-                                  offset: const Offset(0, 10))
+                                color: cardBottom.withOpacity(0.4),
+                                blurRadius: 20,
+                                offset: const Offset(0, 10),
+                              ),
                             ],
                           ),
                           child: Column(
@@ -97,67 +102,71 @@ class PiketUserView extends GetView<PiketUserController> {
                                 return Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(DateFormat('d').format(date),
-                                        style: const TextStyle(
-                                            fontSize: 64,
-                                            height: 1,
-                                            fontWeight: FontWeight.w300,
-                                            color: Colors.white)),
+                                    Text(
+                                      DateFormat('d').format(date),
+                                      style: const TextStyle(
+                                        fontSize: 64,
+                                        height: 1,
+                                        fontWeight: FontWeight.w300,
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                     const SizedBox(width: 10),
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        const Text("th",
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white)),
+                                        const Text(
+                                          "th",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                          ),
+                                        ),
                                         const SizedBox(height: 4),
                                         Row(
                                           children: [
-                                            Text(controller.selectedDay.value,
-                                                style: const TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.amber)),
+                                            Text(
+                                              controller.selectedDay.value,
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.amber,
+                                              ),
+                                            ),
                                             const SizedBox(width: 5),
                                             Text(
-                                                DateFormat('MMMM yyyy')
-                                                    .format(date),
-                                                style: const TextStyle(
-                                                    fontSize: 14,
-                                                    color: Colors.white70)),
-                                            const Icon(Icons.chevron_right,
-                                                color: Colors.white70, size: 18)
+                                              DateFormat(
+                                                'MMMM yyyy',
+                                              ).format(date),
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white70,
+                                              ),
+                                            ),
+                                            const Icon(
+                                              Icons.chevron_right,
+                                              color: Colors.white70,
+                                              size: 18,
+                                            ),
                                           ],
                                         ),
                                       ],
                                     ),
-                                    const Spacer(),
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 6),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Text("Piket Harian",
-                                          style: TextStyle(
-                                              color: cardTop,
-                                              fontSize: 11,
-                                              fontWeight: FontWeight.bold)),
-                                    )
                                   ],
                                 );
                               }),
                               const SizedBox(height: 30),
-                              const Text("Minggu Ini",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 14)),
+                              const Text(
+                                "Minggu Ini",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
                               const SizedBox(height: 15),
 
-  
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -165,56 +174,63 @@ class PiketUserView extends GetView<PiketUserController> {
                                   return Obx(() {
                                     bool isSelected =
                                         controller.selectedDay.value == day;
-                                    bool hasDuty =
-                                        controller.myDutyDays.contains(day);
+                                    bool hasDuty = controller.myDutyDays
+                                        .contains(day);
 
                                     return GestureDetector(
                                       onTap: () => controller.changeDay(day),
                                       behavior: HitTestBehavior.translucent,
                                       child: Container(
                                         padding: const EdgeInsets.symmetric(
-                                            vertical: 8, horizontal: 4),
+                                          vertical: 8,
+                                          horizontal: 4,
+                                        ),
                                         child: Column(
                                           children: [
                                             RotatedBox(
                                               quarterTurns: 3,
-                                              child: Text(day,
-                                                  style: TextStyle(
-                                                      color: hasDuty
-                                                          ? Colors.amberAccent
-                                                          : Colors.white,
-                                                      fontSize: 13,
-                                                      fontWeight: isSelected ||
-                                                              hasDuty
-                                                          ? FontWeight.bold
-                                                          : FontWeight.normal)),
+                                              child: Text(
+                                                day,
+                                                style: TextStyle(
+                                                  color: hasDuty
+                                                      ? Colors.amberAccent
+                                                      : Colors.white,
+                                                  fontSize: 13,
+                                                  fontWeight:
+                                                      isSelected || hasDuty
+                                                      ? FontWeight.bold
+                                                      : FontWeight.normal,
+                                                ),
+                                              ),
                                             ),
                                             const SizedBox(height: 12),
                                             Container(
                                               width: 8,
                                               height: 8,
                                               decoration: BoxDecoration(
-                                                  color: isSelected
-                                                      ? Colors.amber
-                                                      : hasDuty
-                                                          ? Colors.amber
-                                                          : Colors.white
-                                                              .withOpacity(0.5),
-                                                  shape: BoxShape.circle,
-                                                  border: (hasDuty &&
-                                                          !isSelected)
-                                                      ? Border.all(
-                                                          color: Colors.white,
-                                                          width: 1.5)
-                                                      : null),
-                                            )
+                                                color: isSelected
+                                                    ? Colors.amber
+                                                    : hasDuty
+                                                    ? Colors.amber
+                                                    : Colors.white.withOpacity(
+                                                        0.5,
+                                                      ),
+                                                shape: BoxShape.circle,
+                                                border: (hasDuty && !isSelected)
+                                                    ? Border.all(
+                                                        color: Colors.white,
+                                                        width: 1.5,
+                                                      )
+                                                    : null,
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ),
                                     );
                                   });
                                 }).toList(),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -223,8 +239,9 @@ class PiketUserView extends GetView<PiketUserController> {
                         // --- LIST TUGAS / ILUSTRASI ---
                         Obx(() {
                           // Cek apakah ini hari piket user?
-                          bool isMyDuty = controller.myDutyDays
-                              .contains(controller.selectedDay.value);
+                          bool isMyDuty = controller.myDutyDays.contains(
+                            controller.selectedDay.value,
+                          );
 
                           if (!isMyDuty) {
                             // ILUSTRASI BEBAS PIKET
@@ -233,20 +250,26 @@ class PiketUserView extends GetView<PiketUserController> {
                               padding: const EdgeInsets.all(30),
                               child: Column(
                                 children: [
-                                  Icon(Icons.sentiment_very_satisfied_rounded,
-                                      size: 80, color: Colors.blue[100]),
+                                  Icon(
+                                    Icons.sentiment_very_satisfied_rounded,
+                                    size: 80,
+                                    color: Colors.blue[100],
+                                  ),
                                   const SizedBox(height: 20),
-                                  Text("Tidak Ada Piket Hari Ini",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.blue[800])),
+                                  Text(
+                                    "Tidak Ada Piket Hari Ini",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.blue[800],
+                                    ),
+                                  ),
                                   const SizedBox(height: 8),
                                   Text(
-                                      "Hari ini kamu tidak ada jadwal piket.\nNikmati harimu, kawan!",
-                                      textAlign: TextAlign.center,
-                                      style:
-                                          TextStyle(color: Colors.grey[600])),
+                                    "Hari ini kamu tidak ada jadwal piket.\nNikmati harimu, kawan!",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(color: Colors.grey[600]),
+                                  ),
                                 ],
                               ),
                             );
@@ -257,12 +280,16 @@ class PiketUserView extends GetView<PiketUserController> {
                               padding: const EdgeInsets.only(top: 40),
                               child: Column(
                                 children: [
-                                  Icon(Icons.assignment_turned_in_outlined,
-                                      size: 60, color: Colors.grey[300]),
+                                  Icon(
+                                    Icons.assignment_turned_in_outlined,
+                                    size: 60,
+                                    color: Colors.grey[300],
+                                  ),
                                   const SizedBox(height: 10),
-                                  Text("Belum ada tugas yang diinput.",
-                                      style:
-                                          TextStyle(color: Colors.grey[500])),
+                                  Text(
+                                    "Belum ada tugas yang diinput.",
+                                    style: TextStyle(color: Colors.grey[500]),
+                                  ),
                                 ],
                               ),
                             );
@@ -285,7 +312,7 @@ class PiketUserView extends GetView<PiketUserController> {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -297,8 +324,7 @@ class PiketUserView extends GetView<PiketUserController> {
         ? "Selesai oleh: ${task.executorName}"
         : task.location;
 
-    Color subtitleColor =
-        task.isDone ? Colors.green[700]! : Colors.grey[600]!;
+    Color subtitleColor = task.isDone ? Colors.green[700]! : Colors.grey[600]!;
 
     return Container(
       height: 90,
@@ -321,12 +347,17 @@ class PiketUserView extends GetView<PiketUserController> {
                       width: 70,
                       height: double.infinity,
                       decoration: const BoxDecoration(
-                          color: Color(0xFF00C853),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(16),
-                              bottomLeft: Radius.circular(16))),
-                      child: const Icon(Icons.check_circle,
-                          color: Colors.white, size: 30),
+                        color: Color(0xFF00C853),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(16),
+                          bottomLeft: Radius.circular(16),
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.check_circle,
+                        color: Colors.white,
+                        size: 30,
+                      ),
                     ),
                   ),
                   InkWell(
@@ -335,12 +366,17 @@ class PiketUserView extends GetView<PiketUserController> {
                       width: 70,
                       height: double.infinity,
                       decoration: const BoxDecoration(
-                          color: Color(0xFFF44336),
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(16),
-                              bottomRight: Radius.circular(16))),
-                      child: const Icon(Icons.cancel,
-                          color: Colors.white, size: 30),
+                        color: Color(0xFFF44336),
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(16),
+                          bottomRight: Radius.circular(16),
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.cancel,
+                        color: Colors.white,
+                        size: 30,
+                      ),
                     ),
                   ),
                 ],
@@ -367,9 +403,10 @@ class PiketUserView extends GetView<PiketUserController> {
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4))
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
                   ],
                 ),
                 child: Row(
@@ -378,10 +415,14 @@ class PiketUserView extends GetView<PiketUserController> {
                       width: 50,
                       height: 50,
                       decoration: BoxDecoration(
-                          color: Colors.blue.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Icon(_getIconForTitle(task.title),
-                          color: const Color(0xFF0054DA), size: 28),
+                        color: Colors.blue.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Icon(
+                        _getIconForTitle(task.title),
+                        color: const Color(0xFF0054DA),
+                        size: 28,
+                      ),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
@@ -389,20 +430,27 @@ class PiketUserView extends GetView<PiketUserController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(task.title,
-                              style: const TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          Text(
+                            task.title,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           const SizedBox(height: 4),
                           // INFO LOKASI / PELAKU
-                          Text(subtitleText,
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: subtitleColor,
-                                  fontWeight: task.isDone
-                                      ? FontWeight.bold
-                                      : FontWeight.normal),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis),
+                          Text(
+                            subtitleText,
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: subtitleColor,
+                              fontWeight: task.isDone
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ],
                       ),
                     ),
@@ -411,13 +459,17 @@ class PiketUserView extends GetView<PiketUserController> {
                       width: 30,
                       height: 30,
                       decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: task.isDone
-                              ? const Color(0xFF00C853)
-                              : const Color(0xFFF44336)),
-                      child: Icon(task.isDone ? Icons.check : Icons.close,
-                          color: Colors.white, size: 18),
-                    )
+                        shape: BoxShape.circle,
+                        color: task.isDone
+                            ? const Color(0xFF00C853)
+                            : const Color(0xFFF44336),
+                      ),
+                      child: Icon(
+                        task.isDone ? Icons.check : Icons.close,
+                        color: Colors.white,
+                        size: 18,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -445,7 +497,11 @@ class HeaderCurveDownClipper extends CustomClipper<Path> {
     var controlPoint = Offset(size.width / 2, size.height + 50);
     var endPoint = Offset(size.width, size.height - 50);
     path.quadraticBezierTo(
-        controlPoint.dx, controlPoint.dy, endPoint.dx, endPoint.dy);
+      controlPoint.dx,
+      controlPoint.dy,
+      endPoint.dx,
+      endPoint.dy,
+    );
     path.lineTo(size.width, 0);
     path.close();
     return path;
