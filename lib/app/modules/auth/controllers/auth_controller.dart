@@ -112,7 +112,7 @@ class AuthController extends GetxController {
   Future<UserModel?> getActiveUser() async {
     try {
       if (_auth.currentUser is User) {
-        var user = await UserModel(id: _auth.currentUser?.uid).getUser();
+        user = await UserModel(id: _auth.currentUser?.uid).getUser() ?? user;
         return user;
       } else {
         return null;

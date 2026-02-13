@@ -1,12 +1,22 @@
 # Godsseo
 
-Godsseo-App is an internal Godsseo company application built with Flutter to manage internship employee attendance using GPS-based location validation and time tracking. The system is designed to improve discipline, transparency, and operational efficiency through a fully digital attendance workflow.
+Godsseo-App is an internal employee attendance application built with Flutter and Firebase.
+The app is designed to provide a secure, real-time, and location-based attendance system with role-based access for both employees and administrators.
 
-The application implements a multi-role system (Admin & User) with core features including:
-- Real-time GPS-based attendance
-- Leave request and approval workflow
-- Duty (picket) scheduling and task checklist
-- Activity monitoring for interns
+Godsseo-App was developed to solve common operational issues in employee attendance management, including:
+- Manual attendance processes that are prone to manipulation
+- Lack of real-time location validation
+- Inefficient leave request and approval workflows
+- Manual attendance reporting and data recap
+
+The solution is a mobile-first attendance system with:
+- Secure authentication and role-based access control
+- Real-time GPS validation for check-in and check-out
+- Leave request submission with approval workflow
+- Admin dashboard for monitoring, approval, and reporting
+- Data export for payroll and reporting purposes
+
+By using Flutter and Firebase, CodeCueApp delivers a fast, reliable, and scalable attendance platform that can be easily extended as business requirements grow.
 
 ## Tech Stack
 - Flutter + Dart
