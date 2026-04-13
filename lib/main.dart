@@ -9,6 +9,7 @@ import 'package:godsseo/app/data/models/user_model.dart';
 import 'package:godsseo/app/modules/auth/controllers/auth_controller.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+import 'app/data/helpers/fcm.dart';
 import 'app/routes/app_pages.dart';
 
 void main() async {
@@ -19,8 +20,16 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  
+  await Get.putAsync(() => Fcm().init());
+  
   var authController = Get.put(AuthController(), permanent: true);
   await authController.getActiveUser();
+
+  if (authController.isLoggedIn) {
+    await Get.find<Fcm>().subscribeToSchedules();
+  }
+  
   runApp(
     GetMaterialApp(
       title: "Godsseo-App",
