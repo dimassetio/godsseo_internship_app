@@ -17,18 +17,25 @@ class Fcm extends GetxService {
   Future<Fcm> init() async {
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-    await _messaging.requestPermission(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
+    _setupFCM();
+
+    return this;
+  }
+
+  Future<void> _setupFCM() async {
     try {
+      await _messaging.requestPermission(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+
       String? token = await _messaging.getToken();
       debugPrint("🔥" * 20);
       debugPrint("FCM TOKEN EMULATOR LU: $token");
       debugPrint("🔥" * 20);
     } catch (e) {
-      debugPrint("❌ Gagal dapet token: $e");
+      debugPrint(e.toString());
     }
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
@@ -40,8 +47,6 @@ class Fcm extends GetxService {
         );
       }
     });
-
-    return this;
   }
 
   Future<void> subscribeToSchedules() async {
