@@ -21,22 +21,22 @@ class AuthController extends GetxController {
       return await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) async {
-        user.uid = value.user?.uid;
-        var getUserModel = await user.getByUid();
-        if (getUserModel == null) {
-          await _auth.signOut();
-          return "Data user tidak ditemukan";
-          // } else if ((!(value.user?.emailVerified ?? false))) {
-          //   await _auth.signOut();
-          //   return "Email belum diverifikasi";
-        } else if (!(getUserModel.isActive ?? false)) {
-          await _auth.signOut();
-          return "User tidak aktif";
-        } else {
-          user = getUserModel;
-          return null;
-        }
-      });
+            user.uid = value.user?.uid;
+            var getUserModel = await user.getByUid();
+            if (getUserModel == null) {
+              await _auth.signOut();
+              return "Data user tidak ditemukan";
+              // } else if ((!(value.user?.emailVerified ?? false))) {
+              //   await _auth.signOut();
+              //   return "Email belum diverifikasi";
+            } else if (!(getUserModel.isActive ?? false)) {
+              await _auth.signOut();
+              return "User tidak aktif";
+            } else {
+              user = getUserModel;
+              return null;
+            }
+          });
     } on FirebaseAuthException catch (e) {
       return e.message;
     } catch (e) {
@@ -44,31 +44,32 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<UserCredential> createUser(
-    String email,
-    String password,
-  ) async {
+  Future<UserCredential> createUser(String email, String password) async {
     return await _auth.createUserWithEmailAndPassword(
-        email: email, password: password);
+      email: email,
+      password: password,
+    );
   }
 
-  Future<String?> signUp(
-      {required String nickname,
-      required String email,
-      required String password,
-      String? role}) async {
+  Future<String?> signUp({
+    required String nickname,
+    required String email,
+    required String password,
+    String? role,
+  }) async {
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       if (userCredential.user != null) {
         var faUser = userCredential.user!;
         UserModel userModel = UserModel(
-            id: faUser.uid,
-            uid: faUser.uid,
-            nickname: nickname,
-            email: email,
-            role: role ?? Role.magang,
-            isActive: true);
+          id: faUser.uid,
+          uid: faUser.uid,
+          nickname: nickname,
+          email: email,
+          role: role ?? Role.magang,
+          isActive: true,
+        );
         await userModel.save(isSet: true);
         // await faUser.sendEmailVerification();
         return null;
@@ -111,13 +112,8 @@ class AuthController extends GetxController {
   Future<UserModel?> getActiveUser() async {
     try {
       if (_auth.currentUser is User) {
-        // if (_auth.currentUser!.emailVerified) {
-        var user = await UserModel(id: _auth.currentUser?.uid).getUser();
+        user = await UserModel(id: _auth.currentUser?.uid).getUser() ?? user;
         return user;
-        // } else {
-        //   _auth.signOut();
-        //   return null;
-        // }
       } else {
         return null;
       }

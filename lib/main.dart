@@ -9,6 +9,7 @@ import 'package:godsseo/app/data/models/user_model.dart';
 import 'package:godsseo/app/modules/auth/controllers/auth_controller.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+import 'app/data/helpers/fcm.dart';
 import 'app/routes/app_pages.dart';
 
 void main() async {
@@ -16,21 +17,29 @@ void main() async {
   LanguageTranslation.localeList.forEach(
     (element) async => await initializeDateFormatting(element.countryCode),
   );
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  Get.locale = LanguageTranslation.localeID;
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  await Get.putAsync(() => Fcm().init());
+
   var authController = Get.put(AuthController(), permanent: true);
   await authController.getActiveUser();
+
+  if (authController.isLoggedIn) {
+    await Get.find<Fcm>().subscribeToSchedules();
+  }
+
   runApp(
     GetMaterialApp(
       title: "Godsseo-App",
       debugShowCheckedModeBanner: false,
       translations: LanguageTranslation(),
-      locale: Get.locale ?? LanguageTranslation.localeID,
+      locale: LanguageTranslation.localeID,
       initialRoute: authController.isLoggedIn
           ? authC.user.hasRole(Role.administrator)
-              ? Routes.HOME_ADMIN
-              : Routes.HOME
+                ? Routes.HOME_ADMIN
+                : Routes.HOME
           : Routes.AUTH_SIGN_IN,
       getPages: AppPages.routes,
       theme: mainTheme,
